@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "Selector.hpp"
 #include "CommandData.hpp"
 
 // 前方宣言
@@ -32,12 +33,16 @@ enum class BaseCommandType
 
 /// <summary>
 /// コマンドマネージャー
+///
+/// コマンド操作を管理するクラス
+/// Selectorを継承
 /// </summary>
-class CommandManager
+class CommandManager : public Selector
 {
 public:
 	CommandManager();
-	void update();
+
+	void update(bool& isCommandSelected);
 
 	/// @brief コマンドデータの参照を設定する関数
 	void SetData(std::vector<CommandData>& commandData);
@@ -53,9 +58,6 @@ public:
 
 	/// @brief メニューステートをポップする関数
 	void PopMenuState();
-
-	/// @brief コマンド処理を更新する関数
-	void UpdateCommandProcess(bool& isCommandSelected);
 
 	/// @brief ベースメニューのコマンドを選択する関数
 	void SelectBaseCommand(bool& isCommandSelected);
@@ -107,6 +109,7 @@ public:
 	/// @brief targetSelectIndexを取得する関数
 	int32 GetSelectIndex() { return m_targetSelectIndex; }
 
+	/// @brief isShowArrowを取得する関数
 	bool GetIsShowArrow() { return m_isShowArrow; }
 
 	/// @brief コマンドの名前を返す関数

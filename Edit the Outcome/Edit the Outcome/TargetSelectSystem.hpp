@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include <Siv3D.hpp>
+#include "Selector.hpp"
 
 class Player;
 class Enemy;
@@ -9,7 +9,7 @@ class Enemy;
 ///
 /// 敵を選択する処理を行うクラス
 /// </summary>
-class TargetSelectSystem
+class TargetSelectSystem : Selector
 {
 public:
 	TargetSelectSystem();

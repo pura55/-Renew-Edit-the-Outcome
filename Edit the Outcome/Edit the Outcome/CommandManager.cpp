@@ -10,6 +10,25 @@ CommandManager::CommandManager() : m_enemies{}
 	m_menuStack.push(MenuState::Default);
 }
 
+void CommandManager::update(bool& isCommandSelected)
+{
+	switch (m_menuStack.top())
+	{
+	case MenuState::Default:
+		m_menuStack.push(MenuState::Base);
+		break;
+	case MenuState::Base: //ベースメニュー時
+		SelectBaseCommand(isCommandSelected);
+		break;
+	case MenuState::Skill: //スキルメニュー時
+		SelectSkillCommand(isCommandSelected);
+		break;
+	case MenuState::SelectEnemy: //敵選択時
+		ManageDecisionProcessing(isCommandSelected);
+		break;
+	}
+}
+
 void CommandManager::SetReference(TargetSelectSystem& targetSelectSystem, HealthManager& healthManager, Player* player, std::vector<Enemy*> enemies)
 {
 	m_targetSelectSystem = &targetSelectSystem;
@@ -89,50 +108,13 @@ void CommandManager::PopMenuState()
 	}
 }
 
-void CommandManager::UpdateCommandProcess(bool& isCommandSelected)
-{
-	switch (m_menuStack.top())
-	{
-	case MenuState::Default:
-		m_menuStack.push(MenuState::Base);
-		break;
-	case MenuState::Base: //ベースメニュー時
-		SelectBaseCommand(isCommandSelected);
-		break;
-	case MenuState::Skill: //スキルメニュー時
-		SelectSkillCommand(isCommandSelected);
-		break;
-	case MenuState::SelectEnemy: //敵選択時
-		ManageDecisionProcessing(isCommandSelected);
-		break;
-	}
-}
-
 void CommandManager::SelectBaseCommand(bool& isCommandSelected)
 {
-	//[W]Keyでコマンドを上に移動、[S]Keyでコマンドを下に移動
-	if (KeyW.down())
-	{
-		//コマンドのインデックスを減らす
-		m_currentCommandIndex -= 1;
+	// カーソル上昇
+	UpCursor(/*最小値*/ 0, m_currentCommandIndex);
 
-		//コマンドのインデックスが0未満にならないようにする
-		if (m_currentCommandIndex < 0)
-		{
-			m_currentCommandIndex = 0;
-		}
-	}
-	if (KeyS.down())
-	{
-		//コマンドのインデックスを増やす
-		m_currentCommandIndex += 1;
-
-		//コマンドのインデクスが最大値より大きくならないようにする
-		if (m_currentCommandIndex > m_baseMaxIndex)
-		{
-			m_currentCommandIndex = m_baseMaxIndex;
-		}
-	}
+	// カーソル下降
+	DownCursor(m_baseMaxIndex, m_currentCommandIndex);
 
 	// 現在のコマンドインデックス
 	switch (m_currentCommandIndex)
@@ -182,32 +164,11 @@ void CommandManager::SelectSkillCommand(bool& isSelected)
 	// 獲得してるコマンドがない場合は入力操作を行わない
 	if (m_currentCommandData.size() != 0)
 	{
-		//[W]Keyでコマンドを上に移動、[S]Keyでコマンドを下に移動
-		if (KeyW.down())
-		{
-			//コマンドのインデックスを減らす
-			m_currentCommandIndex -= 1;
+		// カーソル上昇
+		UpCursor(/*最小値*/ 0, m_currentCommandIndex);
 
-			//コマンドのインデックスが0未満にならないようにする
-			if (m_currentCommandIndex < 0)
-			{
-				m_currentCommandIndex = 0;
-			}
-		}
-		if (KeyS.down())
-		{
-			//コマンドのインデックスを増やす
-			m_currentCommandIndex += 1;
-
-			// コマンドの要素数からコマンドのインデックスの最大値を決める
-			int32 maxIndex = m_currentCommandData.size() - 1;
-
-			//コマンドのインデックスが最大値より大きくならないようにする
-			if (m_currentCommandIndex > maxIndex)
-			{
-				m_currentCommandIndex = maxIndex;
-			}
-		}
+		// カーソル下降
+		DownCursor(m_currentCommandData.size(), m_currentCommandIndex);
 
 		if (KeySpace.down())
 		{

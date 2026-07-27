@@ -90,7 +90,7 @@ void BattleSystem::StateCommandInput(CommandManager& commandManager)
 	}
 
 	// コマンド処理を更新
-	commandManager.UpdateCommandProcess(m_isSelected);
+	commandManager.update(m_isSelected);
 }
 
 bool BattleSystem::StateEnemyAction(EnemyActionManager& enemyActionManager)

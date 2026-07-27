@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include <Siv3D.hpp>
+#include "Selector.hpp"
 #include "LootItemData.hpp"
 #include "RandomEngine.hpp"
 #include "ItemRate.hpp"
@@ -34,7 +34,7 @@ enum LootMenuState
 /// ルートシーンの処理を行う関数
 /// </summary>
 
-class LootSystem
+class LootSystem : public Selector
 {
 public:
 	LootSystem();

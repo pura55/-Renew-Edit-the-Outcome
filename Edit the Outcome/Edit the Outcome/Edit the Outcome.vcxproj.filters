@@ -161,6 +161,9 @@
     <Filter Include="0_System\GameData">
       <UniqueIdentifier>{ea7b9a3c-d298-40e6-a1f9-caa3da9c3e26}</UniqueIdentifier>
     </Filter>
+    <Filter Include="0_System\BaseClass">
+      <UniqueIdentifier>{2369ed58-9edb-4e63-bae2-b407e2abd15f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -223,6 +226,9 @@
     </ClCompile>
     <ClCompile Include="ImageLoader.cpp">
       <Filter>0_System\GameData</Filter>
+    </ClCompile>
+    <ClCompile Include="Selector.cpp">
+      <Filter>0_System\BaseClass</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -966,6 +972,9 @@
     </ClInclude>
     <ClInclude Include="ItemRate.hpp">
       <Filter>4_LootScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Selector.hpp">
+      <Filter>0_System\BaseClass</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

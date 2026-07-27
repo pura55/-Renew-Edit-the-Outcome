@@ -125,26 +125,11 @@ void LootSystem::DecideKindOfItem()
 
 void LootSystem::AcquireItem()
 {
-	// A・Dkeyで選択
-	if (KeyA.down())
-	{
-		m_selectIndex -= 1;
+	// カーソルを左へ移動
+	LeftCursor(/*最小値*/ 0, m_selectIndex);
 
-		if (m_selectIndex < 0)
-		{
-			m_selectIndex = 0;
-		}
-	}
-
-	if (KeyD.down())
-	{
-		m_selectIndex += 1;
-
-		if (m_selectIndex >= m_maxSelectIndex)
-		{
-			m_selectIndex = m_maxSelectIndex;
-		}
-	}
+	// カーソルを右へ移動
+	RightCursor(m_maxSelectIndex, m_selectIndex);
 
 	// Spaceで決定
 	if (KeySpace.down())

@@ -132,6 +132,7 @@
     <ClCompile Include="LootUI.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Selector.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -367,6 +368,7 @@
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="PlayerProgressData.hpp" />
     <ClInclude Include="RandomEngine.hpp" />
+    <ClInclude Include="Selector.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="TargetSelectSystem.hpp" />
     <ClInclude Include="TitleScene.hpp" />

@@ -27,47 +27,11 @@ void TargetSelectSystem::TargetSelect(int32& selectIndex, bool& isSelected)
 		m_player->SetActionState(PlayerActionState::PlayerAttack);
 	}
 
-	//[W]Keyでコマンドを上に移動、[S]Keyでコマンドを下に移動
-	if (KeyA.down())
-	{
-		//コマンドのインデックスを減らす
-		selectIndex -= 1;
+	// カーソル（矢印）を左に移動
+	LeftCursor(m_minEnemiesNum, selectIndex, m_exclusionEnemiesNum.size(), m_exclusionEnemiesNum);
 
-		// selectIndexと除外番号が一致している場合selectIndexを一つ飛ばす
-		for (size_t i = 0; i < m_exclusionEnemiesNum.size(); i++)
-		{
-			if (m_exclusionEnemiesNum[i] == selectIndex)
-			{
-				selectIndex -= 1;
-			}
-		}
-
-		//コマンドのインデックスが最小値未満にならないようにする
-		if (selectIndex < m_minEnemiesNum)
-		{
-			selectIndex = m_minEnemiesNum;
-		}
-	}
-	if (KeyD.down())
-	{
-		//選択のインデックスを増やす
-		selectIndex += 1;
-
-		// selectIndexと除外番号が一致している場合selectIndexを一つ飛ばす
-		for (size_t i = 0; i < m_exclusionEnemiesNum.size(); i++)
-		{
-			if (m_exclusionEnemiesNum[i] == selectIndex)
-			{
-				selectIndex += 1;
-			}
-		}
-
-		//コマンドのインデックスが最大値より大きくならないようにする
-		if (selectIndex > m_maxEnemiesNum)
-		{
-			selectIndex = m_maxEnemiesNum;
-		}
-	}
+	// カーソル（矢印）を右に移動
+	RightCursor(m_maxEnemiesNum, selectIndex, m_exclusionEnemiesNum.size(), m_exclusionEnemiesNum);
 }
 
 void TargetSelectSystem::InitExclusionEnemies()
