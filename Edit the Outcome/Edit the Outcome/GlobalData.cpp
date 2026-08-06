@@ -48,6 +48,8 @@ bool GlobalData::LoadPlayerData()
 		d.name = playerJson[U"name"].get<String>();
 		d.maxHp = playerJson[U"hp"].get<int32>();
 		d.atk = playerJson[U"atk"].get<int32>();
+		d.def = playerJson[U"def"].get<int32>();
+		d.sp = playerJson[U"sp"].get<int32>();
 
 		m_playerMasterTable.push_back(d);
 	}
@@ -121,6 +123,7 @@ bool GlobalData::LoadCommandData()
 		d.id = commandJson[U"id"].get<int32>();
 		d.name = commandJson[U"name"].get<String>();
 		d.dmg = commandJson[U"dmg"].get<int32>();
+		d.sp = commandJson[U"sp"].get<int32>();
 		d.isGet = commandJson[U"isGet"].get<bool>();
 
 		m_commandMasterTable.push_back(d);

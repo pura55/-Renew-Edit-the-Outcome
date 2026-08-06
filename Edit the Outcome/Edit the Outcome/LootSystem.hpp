@@ -1,8 +1,7 @@
 ﻿#pragma once
 #include "Selector.hpp"
+#include "RandomPicker.hpp"
 #include "LootItemData.hpp"
-#include "RandomEngine.hpp"
-#include "ItemRate.hpp"
 
 /// <summary>
 /// ルートステート
@@ -34,7 +33,7 @@ enum LootMenuState
 /// ルートシーンの処理を行う関数
 /// </summary>
 
-class LootSystem : public Selector
+class LootSystem : public Selector, public RandomPicker
 {
 public:
 	LootSystem();
@@ -79,14 +78,14 @@ private:
 	/// @brief ルートアイテム選択終了の処理を行う関数
 	void LootFinished();
 
-	/// @brief アイテムの種類を決定する関数
-	void DecideKindOfItem();
-
-	/// @brief アイテムを獲得する関数
-	void AcquireItem();
+	/// @brief アイテムを選択する関数
+	void SelectItem();
 
 	/// @brief アイテム獲得を確認する関数
 	bool CheckAcquisition();
+
+	/// @brief アイテムを獲得する関数
+	void AcquireItem();
 
 private:
 	LootState m_lootState{ LootState::Init }; // ルートステート
@@ -105,7 +104,7 @@ private:
 
 	bool m_needAcquireCheck{ false }; // アイテムを獲得するかどうかを確認するフラグ(true: 確認する, false: 確認しない）
 
-	int32 m_currentPlayerID = 0; // 現在のプレイヤーのID
+	int32 m_currentPlayerID = 1; // 現在のプレイヤーのID
 
 	std::stack<LootMenuState> m_menuStack; // メニューのスタック
 

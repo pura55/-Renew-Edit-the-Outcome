@@ -135,7 +135,7 @@ void BattleScene::PassReferences()
 		// プレイヤーのポインタを取得
 		Player* playerPtr = m_player.get();
 
-		// 必要なサイズのメモリをあらかじめ確保
+		// 必要なサイズのを容量を確保
 		std::vector<Enemy*> enemyPtr;
 		enemyPtr.reserve(m_activeEnemies.size());
 

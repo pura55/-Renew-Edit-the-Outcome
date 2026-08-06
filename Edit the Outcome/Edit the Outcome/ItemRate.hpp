@@ -11,6 +11,7 @@ namespace ItemRate
 
 	const double DOUBLE_MAX{ 1.0 }; // double型の確率の最大値
 	const double DOUBLE_MIN{ 0.0 }; // double型の確率の最小値
+	const double DOUBLE_STAT_MAX{ 0.9 }; // ステータスの確率の最大値
 
 	/// アイテムの種類別の出現確率 ///
 
@@ -18,8 +19,6 @@ namespace ItemRate
 
 	// ステータス上昇の出現確率 ＊出現は二択であるため定義しない
     // STAT_APPEARING{ 0.75 }; 
-	
-
 
 	/// コマンド別の出現確率 ///
 
@@ -27,5 +26,5 @@ namespace ItemRate
 
 	/// ステータス別の出現確率 ///
 
-	const double STAT_AVG{ 0.25 }; // １ステータス当たりの平均確率
+	const double STAT_AVG{ 0.3 }; // １ステータス当たりの平均確率
 }

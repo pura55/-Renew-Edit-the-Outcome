@@ -36,7 +36,7 @@ void TargetSelectSystem::TargetSelect(int32& selectIndex, bool& isSelected)
 
 void TargetSelectSystem::InitExclusionEnemies()
 {
-	m_exclusionEnemiesNum.resize(m_enemies.size());// 敵の配列のサイズをコピー
+	m_exclusionEnemiesNum.reserve(m_enemies.size());// 敵の配列の容量をコピー
 
 	// 除外する敵の番号に初期値として例外番号（-1）を格納
 	for (size_t i = 0; i < m_exclusionEnemiesNum.size(); i++)

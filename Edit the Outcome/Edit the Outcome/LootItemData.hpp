@@ -1,5 +1,8 @@
 ﻿#pragma once
 #include "CommandData.hpp"
+#include "StatusAttack.hpp"
+#include "StatusDefence.hpp"
+#include "StatusSkill.hpp"
 #include "PlayerProgressData.hpp"
 
 /// <summary>
@@ -9,9 +12,13 @@
 /// </summary>
 struct LootItemData
 {
-	/// @brief std::variant(指定した複数の型のうち、いずれか1つの値を型安全に保持できる機能)
-	/// @brief を使用し
-
+	/// @brief std::variant(指定した複数の型のうち、いずれか1つの値を型安全に保持できる機能)を使用し
 	// ルートデータを格納する変数
-	std::variant<CommandData, PlayerProgressData> lootData;
+	std::variant<CommandData, StatusAttack, StatusDefence, StatusSkill> lootData;
+
+	StatusAttack statusAttack; // 攻撃力の保持
+
+	StatusDefence statusDefence; // 守備力の保持
+
+	StatusSkill statusSkill; // スキルの保持
 };

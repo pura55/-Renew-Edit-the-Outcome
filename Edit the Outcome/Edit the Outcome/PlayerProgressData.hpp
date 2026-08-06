@@ -8,8 +8,10 @@
 /// <summary>
 struct PlayerProgressData
 {
-	int32 id;     //ID
-	String name;  //名前
-	int32 maxHp;  //体力
-	int32 atk;    //攻撃力
+	int32 id;     // ID
+	String name;  // 名前
+	int32 maxHp;  // 体力
+	int32 atk;    // 攻撃力
+	int32 def;    // 防御力
+	int32 sp;     // スキルポイント
 };

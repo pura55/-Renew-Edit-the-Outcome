@@ -19,11 +19,6 @@ void LootSystem::update()
 		LootFinished();
 		break;
 	}
-
-	if (KeyB.down())
-	{
-		m_lootItemSelected = true;
-	}
 }
 
 void LootSystem::SetLootData(std::vector<CommandData>& commandData, std::vector<PlayerProgressData>& playerData, int32 playerID)
@@ -39,7 +34,7 @@ void LootSystem::SetLootData(std::vector<CommandData>& commandData, std::vector<
 void LootSystem::LootInit()
 {
 	// アイテム決定
-	DecideKindOfItem();
+	PickLootItem(m_itemDataSize, m_lootItemData, m_commandData);
 
 	// 変数の初期化
 	m_selectIndex = 0;
@@ -56,7 +51,7 @@ void LootSystem::LootSelecting()
 	// 確認が必要ない場合、選択処理を行う
 	if (not m_needAcquireCheck)
 	{
-		AcquireItem();
+		SelectItem();
 		return;
 	}
 	else
@@ -72,58 +67,11 @@ void LootSystem::LootSelecting()
 
 void LootSystem::LootFinished()
 {
+	m_lootItemSelected = true;
+	return;
 }
 
-void LootSystem::DecideKindOfItem()
-{
-	// ルートアイテムのデータのサイズを設定
-	m_lootItemData.resize(m_itemDataSize);
-
-	int32 registItemCount = 0; // 登録アイテムのカウント
-
-	// 登録カウントがルートアイテムのサイズ未満の場合実行
-	while (registItemCount < m_itemDataSize)
-	{
-		// アイテムの確率を格納
-		double rateOfItem = m_randomEngine->RandomDouble(ItemRate::DOUBLE_MIN, ItemRate::DOUBLE_MAX);
-
-		
-		if (rateOfItem < ItemRate::COMMAND_APPEARING)
-		{
-			// コマンドが出現する場合
-			double rateOfCommand = m_randomEngine->RandomDouble(ItemRate::DOUBLE_MIN, ItemRate::DOUBLE_MAX);
-
-			if (rateOfCommand < ItemRate::COMMAND_AVG)
-			{
-
-			}
-			else if (rateOfCommand < ItemRate::COMMAND_AVG * 2)
-			{
-
-			}
-			else if (rateOfCommand < ItemRate::COMMAND_AVG * 3)
-			{
-
-			}
-			else if (rateOfCommand < ItemRate::COMMAND_AVG * 4)
-			{
-
-			}
-			else if (rateOfCommand < ItemRate::COMMAND_AVG * 5)
-			{
-
-			}
-			
-		}
-		else
-		{
-			// ステータスが出現する場合
-
-		}
-	}
-}
-
-void LootSystem::AcquireItem()
+void LootSystem::SelectItem()
 {
 	// カーソルを左へ移動
 	LeftCursor(/*最小値*/ 0, m_selectIndex);
@@ -141,26 +89,11 @@ void LootSystem::AcquireItem()
 
 bool LootSystem::CheckAcquisition()
 {
-	// A・Dkeyで選択
-	if (KeyA.down())
-	{
-		m_checkIndex -= 1;
+	// カーソルを左へ移動
+	LeftCursor(/*最小値*/ 0, m_checkIndex);
 
-		if (m_checkIndex < 0)
-		{
-			m_checkIndex = 0;
-		}
-	}
-
-	if (KeyD.down())
-	{
-		m_checkIndex += 1;
-
-		if (m_checkIndex >= m_maxCheckIndex)
-		{
-			m_checkIndex = m_maxCheckIndex;
-		}
-	}
+	// カーソルを右へ移動
+	RightCursor(m_maxCheckIndex, m_checkIndex);
 
 	// Spaceで決定
 	if (KeySpace.down())
@@ -168,17 +101,69 @@ bool LootSystem::CheckAcquisition()
 		switch (m_checkIndex)
 		{
 		case 0: // 「はい」
+			// アイテム獲得
+			AcquireItem();
 			m_menuStack.push(LootMenuState::Finish);
 			return true;
-			break;
 		case 1:// 「いいえ」
 			m_menuStack.pop(); // メニュースタックをポップ
 			m_needAcquireCheck = false;
 			m_checkIndex = 0;
 			return false;
-			break;
 		}
 	}
 
 	return false;
+}
+
+void LootSystem::AcquireItem()
+{
+	// 選択したindexに対応するルートアイテムを獲得
+	if (std::holds_alternative<CommandData>(m_lootItemData[m_selectIndex].lootData)) {
+		// 格納されているコマンドを取り出す
+		const CommandData& command = std::get<CommandData>(m_lootItemData[m_selectIndex].lootData);
+		// 一致するコマンドIDからコマンドを獲得
+		for (size_t i = 0; i < m_commandData.size(); i++)
+		{
+			// 取り出したコマンドのIDが一致していない場合続行
+			if (m_commandData[i].id != command.id) continue;
+
+			// コマンドの獲得フラグをtrueに設定
+			m_commandData[i].isGet = true;
+			break;
+		}
+	}
+	else if (std::holds_alternative<StatusAttack>(m_lootItemData[m_selectIndex].lootData)) {
+		for (size_t i = 0; i < m_playerData.size(); i++)
+		{
+			// 取り出したコマンドのIDが一致していない場合続行
+			if (m_playerData[i].id != m_currentPlayerID) continue;
+
+			// 攻撃力を増加
+			m_playerData[i].atk += m_lootItemData[m_selectIndex].statusAttack.atk;
+			break;
+		}
+	}
+	else if (std::holds_alternative<StatusDefence>(m_lootItemData[m_selectIndex].lootData)) {
+		for (size_t i = 0; i < m_playerData.size(); i++)
+		{
+			// 取り出したコマンドのIDが一致していない場合続行
+			if (m_playerData[i].id != m_currentPlayerID) continue;
+
+			// 攻撃力を増加
+			m_playerData[i].def += m_lootItemData[m_selectIndex].statusDefence.def;
+			break;
+		}
+	}
+	else if (std::holds_alternative<StatusSkill>(m_lootItemData[m_selectIndex].lootData)) {
+		for (size_t i = 0; i < m_playerData.size(); i++)
+		{
+			// 取り出したコマンドのIDが一致していない場合続行
+			if (m_playerData[i].id != m_currentPlayerID) continue;
+
+			// 攻撃力を増加
+			m_playerData[i].sp += m_lootItemData[m_selectIndex].statusSkill.sp;
+			break;
+		}
+	}
 }

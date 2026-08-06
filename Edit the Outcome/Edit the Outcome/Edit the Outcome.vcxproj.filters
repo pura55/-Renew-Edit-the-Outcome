@@ -164,6 +164,12 @@
     <Filter Include="0_System\BaseClass">
       <UniqueIdentifier>{2369ed58-9edb-4e63-bae2-b407e2abd15f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="4_LootScene\System">
+      <UniqueIdentifier>{f92964b2-1c7a-49b3-adc2-ec4dd3a36476}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4_LootScene\Data">
+      <UniqueIdentifier>{e698ce05-a4ac-4376-8b38-363f9159630a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -212,9 +218,6 @@
     <ClCompile Include="LootScene.cpp">
       <Filter>4_LootScene</Filter>
     </ClCompile>
-    <ClCompile Include="LootSystem.cpp">
-      <Filter>4_LootScene</Filter>
-    </ClCompile>
     <ClCompile Include="LootBg.cpp">
       <Filter>4_LootScene\Renderer</Filter>
     </ClCompile>
@@ -229,6 +232,12 @@
     </ClCompile>
     <ClCompile Include="Selector.cpp">
       <Filter>0_System\BaseClass</Filter>
+    </ClCompile>
+    <ClCompile Include="RandomPicker.cpp">
+      <Filter>0_System\BaseClass</Filter>
+    </ClCompile>
+    <ClCompile Include="LootSystem.cpp">
+      <Filter>4_LootScene\System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -940,17 +949,11 @@
     <ClInclude Include="LootScene.hpp">
       <Filter>4_LootScene</Filter>
     </ClInclude>
-    <ClInclude Include="LootSystem.hpp">
-      <Filter>4_LootScene</Filter>
-    </ClInclude>
     <ClInclude Include="LootBg.hpp">
       <Filter>4_LootScene\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="LootUI.hpp">
       <Filter>4_LootScene\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="LootItemData.hpp">
-      <Filter>4_LootScene</Filter>
     </ClInclude>
     <ClInclude Include="EnemyData.hpp">
       <Filter>0_System\Struct_ExternalData</Filter>
@@ -975,6 +978,24 @@
     </ClInclude>
     <ClInclude Include="Selector.hpp">
       <Filter>0_System\BaseClass</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomPicker.hpp">
+      <Filter>0_System\BaseClass</Filter>
+    </ClInclude>
+    <ClInclude Include="LootSystem.hpp">
+      <Filter>4_LootScene\System</Filter>
+    </ClInclude>
+    <ClInclude Include="StatusAttack.hpp">
+      <Filter>4_LootScene\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="StatusDefence.hpp">
+      <Filter>4_LootScene\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="StatusSkill.hpp">
+      <Filter>4_LootScene\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="LootItemData.hpp">
+      <Filter>4_LootScene\Data</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
