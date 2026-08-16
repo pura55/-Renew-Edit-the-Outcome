@@ -92,7 +92,7 @@ void CommandManager::RegistCommandData()
 void CommandManager::ResetVariable()
 {
 	// ターゲットの除外処理を実行
-	m_targetSelectSystem->ExclusionEnemies(m_targetSelectIndex);
+	m_targetSelectSystem->ExclusionEnemies();
 
 	// 変数を初期状態に設定
 	m_currentCommandIndex = 0;
@@ -199,7 +199,7 @@ void CommandManager::ManageDecisionProcessing(bool& isCommandSelected)
 			// ベースコマンドタイプによって関数の使用を分ける
 			if (m_baseCommandType == BaseCommandType::Attack)
 			{
-				m_healthManager->PlayerAttackEnemy(m_player->GetPlayerAtk(), m_targetSelectIndex);
+				m_healthManager->PlayerAttackEnemy(m_player->GetPlayerAtk(), m_targetSelectSystem->GetSelectTarget());
 			}
 			else if (m_baseCommandType == BaseCommandType::Skills)
 			{
@@ -208,7 +208,7 @@ void CommandManager::ManageDecisionProcessing(bool& isCommandSelected)
 				{
 					if (m_currentCommandIndex == i)
 					{
-						m_healthManager->PlayerAttackEnemy(m_currentCommandData[i].dmg, m_targetSelectIndex);
+						m_healthManager->PlayerAttackEnemy(m_currentCommandData[i].dmg, m_targetSelectSystem->GetSelectTarget());
 					}
 				}
 			}
@@ -219,10 +219,12 @@ void CommandManager::ManageDecisionProcessing(bool& isCommandSelected)
 		return;
 	}
 
+	m_maxEnemiesNum = m_targetSelectSystem->GetMaxNum();
+
 	// 選択矢印を表示
 	m_isShowArrow = true;
 	// ターゲットを選択する
-	m_targetSelectSystem->TargetSelect(m_targetSelectIndex, m_isTargetSelected);
+	m_targetSelectSystem->TargetSelect(m_isTargetSelected);
 
 	if (KeyC.down())
 	{

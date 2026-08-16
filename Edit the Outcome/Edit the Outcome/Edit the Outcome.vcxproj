@@ -134,6 +134,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RandomPicker.cpp" />
     <ClCompile Include="Selector.cpp" />
+    <ClCompile Include="Spawner.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -351,6 +352,7 @@
     <ClInclude Include="BattleSystem.hpp" />
     <ClInclude Include="BattleUI.hpp" />
     <ClInclude Include="BootScene.hpp" />
+    <ClInclude Include="Character.hpp" />
     <ClInclude Include="CommandData.hpp" />
     <ClInclude Include="CommandManager.hpp" />
     <ClInclude Include="Common.hpp" />
@@ -371,6 +373,7 @@
     <ClInclude Include="RandomEngine.hpp" />
     <ClInclude Include="RandomPicker.hpp" />
     <ClInclude Include="Selector.hpp" />
+    <ClInclude Include="Spawner.hpp" />
     <ClInclude Include="StatusAttack.hpp" />
     <ClInclude Include="StatusDefence.hpp" />
     <ClInclude Include="StatusSkill.hpp" />

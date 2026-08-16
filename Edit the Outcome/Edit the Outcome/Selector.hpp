@@ -36,7 +36,7 @@ protected:
 	/// @param selectIndex 現在のインデックス
 	/// @param exclusionSize 除外番号の配列サイズ
 	/// @param exclusionTargetNum 除外するターゲットの番号
-	void LeftCursor(const int32 minIndex, int32& selectIndex, const size_t exclusionSize, const std::vector<int32> exclusionTargetNum);
+	void LeftCursor(const int32 minIndex, int32& selectIndex, const std::vector<int32> exclusionTargetNum);
 
 	/// @brief カーソルの右への移動処理を行う関数 (除外なし)
 	/// @param maxIndex インデックスの最大値
@@ -48,5 +48,5 @@ protected:
 	/// @param selectIndex 現在のインデックス
 	/// @param exclusionSize 除外番号の配列サイズ
 	/// @param exclusionTargetNum 除外するターゲットの番号
-	void RightCursor(const int32 maxIndex, int32& selectIndex, const size_t exclusionSize, const std::vector<int32> exclusionTargetNum);
+	void RightCursor(const int32 maxIndex, int32& selectIndex, const std::vector<int32> exclusionTargetNum);
 };

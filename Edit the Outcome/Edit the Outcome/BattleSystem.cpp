@@ -63,8 +63,7 @@ void BattleSystem::SetReference(Player* player, std::vector<Enemy*> enemies)
 void BattleSystem::StateInit(CommandManager& commandManager, EnemyActionManager& enemyActionManager)
 {
 	m_state = BattleState::Start;
-
-	// コマンドマネージャーの変数をリセット(初期化）
+	// 変数を初期化
 	commandManager.ResetVariable();
 
 	// エネミーをキューに入れる

@@ -40,8 +40,14 @@ public:
 	/// @brief コマンドのデータをロードすdる関数 
 	bool LoadCommandData();
 
-	/// @brief  idを指定して、コマンドのデータを取得する関数
+	/// @brief idを指定して、コマンドのデータを取得する関数
 	const CommandData& GetCommandData(int32 id) const;
+
+	/// @brief ラウンド数をリセットする関数 
+	void ResetRound() { m_currentRound = 1; }
+
+	/// @brief ラウンドを加算する関数 
+	void AddRound() { m_currentRound += 1; }
 
 public:
 	// イメージローダーを保持
@@ -67,6 +73,9 @@ public:
 
 	// 現在選択されているキャラクターID
 	int32 m_currentCharacterID{1};
+
+	// 現在のラウンド
+	int32 m_currentRound{ 1 };
 
 	// ランダム変数を生成するためのシード値
 	const uint32 m_rngSeed{ 1234567 }; 

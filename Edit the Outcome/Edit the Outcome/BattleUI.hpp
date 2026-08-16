@@ -4,6 +4,7 @@
 // 前方宣言
 class BattleSystem;
 class CommandManager;
+class TargetSelectSystem;
 class Player;
 class Enemy;
 
@@ -19,25 +20,25 @@ class BattleUI
 	/// </summary>
 public:
 	BattleUI();
-	void update(CommandManager& commandManager);
-	void draw(CommandManager& commandManager) const;
+	void update();
+	void draw() const;
 
 	/// <summary>
 	/// Setter/Getter
 	/// </summary>
 public:
 	/// @brief 外部オブジェクトへの参照を設定する関数
-	void SetReference(BattleSystem& battleSystem, Player* player, std::vector<Enemy*> enemy);
+	void SetReference(BattleSystem& battleSystem, CommandManager& commandManager ,TargetSelectSystem& targetSelectSystem, Player* player, std::vector<Enemy*> enemy);
 
 	/// <summary>
 	/// 機能関数
 	/// </summary>
 public:
 	/// @brief メインのカーソル座標をUpdateする関数
-	void UpdateCursorPos(CommandManager& commandManager);
+	void UpdateCursorPos();
 
 	/// @brief サブのカーソル座標をUpdateする関数
-	void UpdateSubCursorPos(CommandManager& commandManager);
+	void UpdateSubCursorPos();
 
 	/// <summary>
 	/// 一般型名変数
@@ -64,9 +65,9 @@ private:
 	const Vec2 m_commandWindowPos{ m_width * 0.25, m_height * 0.8 };
 
 	//矢印の三点の基本座標
-	const Vec2 m_cursorFirstPos{ m_commandWindowPos.x - 128.0 + 32.0, m_commandWindowPos.y - 96.0 + 38.0};
-	const Vec2 m_cursorSecondPos{ m_commandWindowPos.x - 128.0 + 32.0, m_commandWindowPos.y - 96.0 + 54.0};
-	const Vec2 m_cursorThirdPos{ m_commandWindowPos.x - 128.0 + 32.0 + 16.0, m_commandWindowPos.y - 96.0 + 46.0};
+	const Vec2 m_cursorFirstPos{ m_commandWindowPos.x - 128.0 + 32.0, m_commandWindowPos.y - 96.0 + 38.0 };
+	const Vec2 m_cursorSecondPos{ m_commandWindowPos.x - 128.0 + 32.0, m_commandWindowPos.y - 96.0 + 54.0 };
+	const Vec2 m_cursorThirdPos{ m_commandWindowPos.x - 128.0 + 32.0 + 16.0, m_commandWindowPos.y - 96.0 + 46.0 };
 
 	//矢印の移動後の三点の基本座標
 	Vec2 m_movedFirstPos{ 0, 0 };
@@ -107,8 +108,12 @@ private:
 	/// ポインタの保持 ///
 
 #pragma region Pointer
-	//バトルシステムのポインタを保持
-	BattleSystem* m_battleSystem{ nullptr };
+	BattleSystem* m_battleSystem{ nullptr }; //バトルシステムのポインタを保持
+
+	CommandManager* m_commandManager{ nullptr }; // コマンドマネージャーのポインタを保持
+
+	TargetSelectSystem* m_targetSelectSystem{ nullptr }; //ターゲットセレクトシステムシステムのポインタを保持
+
 	Player* m_player;
 	std::vector<Enemy*> m_enemies;
 #pragma endregion

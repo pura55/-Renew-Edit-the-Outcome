@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "Character.hpp"
 #include "EnemyData.hpp"
 
 /// <summary>
@@ -30,30 +31,15 @@ enum EnemyActionState
 /// 
 /// エネミーのインスタンスとして生成されるクラス
 /// </summary>
-class Enemy
+class Enemy : public Character
 {
 public:
 	Enemy(const EnemyData& masterData, int32 generate);
-	void update();
-	void draw() const;
+	void update() override;
+	void draw() const override;
 
 	/// @brief 生成番号を返す関数
 	int32 GetGenerateNum() { return m_generateNum; }
-
-	/// @brief 行動状態を更新する関数
-	void UpdateActionState();
-
-	/// @brief 待機アニメーションの更新処理を行う関数
-	void UpdateIdleAnimation();
-
-	/// @brief 攻撃アニメーションを実行する関数
-	void ExecuteAttackAnimation();
-
-	/// @brief 被ダメージアニメーションを実行する関数
-	void ExecuteReceiveDamageAnimation();
-
-	/// @brief 死亡アニメーションをする実行する関数
-	void ExecuteDeadAnimation();
 
 	/// @brief アクションステートを設定する関数 
 	void SetActionState(const int32 actionNum)
@@ -96,18 +82,24 @@ public:
 	/// @brief 敵の攻撃力を返す関数
 	int32 GetEnemyAtk() const{ return m_currentAtk; }
 
-	/// @brief エネミーのHpの割合を計算する関数
-	/// @details (詳)PctはPercentageの略です 
-	int32 CalculatePctOfHp()
-	{
-		return m_enemyHealthPct = m_fullHealthPct * (m_currentHp / m_maxHp);
-	}
-
-	/// @brief 攻撃が終了のフラグを返す関数
-	bool GetFinishedAttacking()const { return m_isFinishedAttacking; }
-
 	/// @brief 攻撃が終了のフラグを返す関数
 	bool GetReceivingDamage()const { return m_isReceivingDamage; }
+
+private:
+	/// @brief 行動状態を更新する関数
+	void UpdateActionState() override;
+
+	/// @brief 待機アニメーションの更新処理を行う関数
+	void UpdateIdleAnimation() override;
+
+	/// @brief 攻撃アニメーションを実行する関数
+	void ExecuteAttackAnimation() override;
+
+	/// @brief 被ダメージアニメーションを実行する関数
+	void ExecuteReceiveDamageAnimation() override;
+
+	/// @brief 死亡アニメーションをする実行する関数
+	void ExecuteDeadAnimation() override;
 
 private:
 
@@ -115,8 +107,6 @@ private:
 #pragma region Draw
 
 	String m_assetName;  // アセット名
-
-	const int32 m_maxAnimationFrame{ 25 }; // アニメーションフレームの最大値
 	
 	const int32 m_maxAnimationNum{ 6 };    // アニメーションの最大枚数
 
@@ -126,23 +116,13 @@ private:
 
 	const int32 m_maxDeadAnimationNum{ 3 }; // 死亡アニメーションの最大枚数
 
-	Vec2 m_enemyPos{ 750.0, 400.0 };  // エネミーの座標
-
 	Rect m_regionAtEnemy{ 0, 0, 200, 200 };// 画像取得範囲
-
-	int32 m_animationFrameCount{ 0 };   // アニメーションフレームのカウンター
-	
-	int32 m_animationNumX{ 0 };  // X軸のアニメーション枚数
-
-	int32 m_animationNumY{ 0 };  // Y軸のアニメーション枚数
-
-	bool m_isAttackingAnimation{ false }; // 攻撃アニメーションの最中かどうかのフラグ
 
 	bool m_isReceivingDamage{ false }; // 被ダメージアニメーションの最中かどうかのフラグ
 #pragma endregion
 
 	/// ステータス変数 ///
-#pragma region status
+#pragma region Status
 
 	EnemyLifeState m_lifeState; // 生死の状態
 
@@ -150,21 +130,8 @@ private:
 
 	int32 m_generateNum; // 生成番号
 
-	const int32 m_fullHealthPct{ 100 };        // 体力の最大割合
-
-	int32 m_enemyHealthPct{ m_fullHealthPct };  // プレイヤーの割合
-
-	double m_maxHp;                           // 最大体力：体力の割合を計算するためdouble型
-
-	int32 m_currentHp;                       // 現在の体力
-
-	int32 m_currentAtk;                      // 現在の攻撃力
-
 	EnemyData m_masterData; // 敵の仕様（名前や最大HP、攻撃力など）
 
-	bool m_isFinishedAttacking{ false }; // 攻撃が終了したかどうか
-
-	bool m_isDead{ false };  // 死亡フラグ
 #pragma endregion
 	
 };

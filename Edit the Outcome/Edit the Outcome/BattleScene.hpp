@@ -3,6 +3,7 @@
 #include "BattleSystem.hpp"
 #include "BattleBgRenderer.hpp"
 #include "BattleUI.hpp"
+#include "Spawner.hpp"
 #include "Player.hpp"
 #include "Enemy.hpp"
 #include "HealthManager.hpp"
@@ -46,6 +47,8 @@ private:
 	TargetSelectSystem targetSelectSystem; // ターゲットセレクトシステムを保持
 	
 	EnemyActionManager enemyActionManager; // エネミーアクションマネージャーを保持
+
+	Spawner spawner; // スポナーを保持
 
 	// プレイヤーを保持
 	// スマートポインタを使用しエラーを防止

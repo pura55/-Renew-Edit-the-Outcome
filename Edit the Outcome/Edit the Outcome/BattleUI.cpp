@@ -2,6 +2,7 @@
 #include "BattleUI.hpp"
 #include "BattleSystem.hpp"
 #include "CommandManager.hpp"
+#include "TargetSelectSystem.hpp"
 #include "Player.hpp"
 #include "Enemy.hpp"
 
@@ -9,17 +10,17 @@ BattleUI::BattleUI() :m_player{ nullptr }
 {
 }
 
-void BattleUI::update(CommandManager& commandManager)
+void BattleUI::update()
 {
-	if (not commandManager.GetIsSkillWindow())
+	if (not m_commandManager->GetIsSkillWindow())
 	{
 		// カーソルを更新
-		UpdateCursorPos(commandManager);
+		UpdateCursorPos();
 	}
 	else
 	{
 		// サブのカーソルを更新
-		UpdateSubCursorPos(commandManager);
+		UpdateSubCursorPos();
 	}
 }
 
@@ -31,7 +32,7 @@ void BattleUI::update(CommandManager& commandManager)
 /// 今後描画する際は(Rect{})で代用してください。
 /// 
 /// </remarks>
-void BattleUI::draw(CommandManager& commandManager) const
+void BattleUI::draw() const
 {
 	/// ステータス ///
 	{
@@ -57,7 +58,7 @@ void BattleUI::draw(CommandManager& commandManager) const
 
 	/// コマンドウィンドウ ///
 	{
-		if (commandManager.CanShowWindow())
+		if (m_commandManager->CanShowWindow())
 		{
 			// コマンドウィンドウ
 			TextureAsset(U"CommandWindow").drawAt(m_commandWindowPos);
@@ -72,10 +73,10 @@ void BattleUI::draw(CommandManager& commandManager) const
 			FontAsset(U"Command")(U"スキル")
 				.draw(TextStyle::OutlineShadow(0.2, ColorF{ 0.2, 0.6, 0.2 }, Vec2{ 3, 3 }, ColorF{ 0.0, 0.5 }), Vec2{ m_commandWindowPos.x - 70, m_commandWindowPos.y });
 
-			if (commandManager.GetIsSkillWindow())
+			if (m_commandManager->GetIsSkillWindow())
 			{
 				// コマンド名を登録
-				std::vector<String> commandName = commandManager.GetCommandName();
+				std::vector<String> commandName = m_commandManager->GetCommandName();
 
 				TextureAsset(U"SubCommandWindow").drawAt(m_subCommandWindowPos);
 
@@ -107,9 +108,12 @@ void BattleUI::draw(CommandManager& commandManager) const
 
 	/// 敵を選択する矢印 ///
 	{
-		if (commandManager.GetIsShowArrow())
+		if (m_commandManager->GetIsShowArrow())
 		{
-			TextureAsset(U"SelectArrow")(Rect{ 0,0,128,128 }).drawAt(m_selectArrowPos.x + 200.0 * commandManager.GetSelectIndex(), m_selectArrowPos.y);
+			TextureAsset(U"SelectArrow")(Rect{ 0,0,128,128 }).drawAt(m_selectArrowPos.x + 200.0 * m_targetSelectSystem->GetSelectTarget(), m_selectArrowPos.y);
+			FontAsset(U"Command")(m_targetSelectSystem->GetMaxNum())
+				.draw(TextStyle::OutlineShadow(0.2, ColorF{ 0.6, 0.6, 0.2 }, Vec2{ 3, 3 }, ColorF{ 0.0, 0.5 }), Vec2{ 200.0,200.0 });
+
 		}
 	}
 
@@ -119,16 +123,18 @@ void BattleUI::draw(CommandManager& commandManager) const
 	//	.drawAt(TextStyle::OutlineShadow(0.2, ColorF{ 0.2, 0.6, 0.2 }, Vec2{ 3, 3 }, ColorF{ 0.0, 0.5 }), 100, Vec2{ 400, 300 });
 }
 
-void BattleUI::SetReference(BattleSystem& battleSystem, Player* player, std::vector<Enemy*> enemy)
+void BattleUI::SetReference(BattleSystem& battleSystem,CommandManager& commandManager,TargetSelectSystem& targetSelectSystem, Player* player, std::vector<Enemy*> enemy)
 {
 	m_battleSystem = &battleSystem;
+	m_commandManager = &commandManager;
+	m_targetSelectSystem = &targetSelectSystem;
 	m_player = player;
 	m_enemies = enemy;
 }
 
-void BattleUI::UpdateCursorPos(CommandManager& commandManager)
+void BattleUI::UpdateCursorPos()
 {
-	m_currentCommandIndex = commandManager.GetCommandIndex();
+	m_currentCommandIndex = m_commandManager->GetCommandIndex();
 
 	//commandIndexによってカーソルの座標を移動させる
 	m_offsetCursorY = ( 32.0 * m_currentCommandIndex);
@@ -142,9 +148,9 @@ void BattleUI::UpdateCursorPos(CommandManager& commandManager)
 	m_movedThirdPos = m_cursorThirdPos.movedBy(m_cosWave, m_offsetCursorY);
 }
 
-void BattleUI::UpdateSubCursorPos(CommandManager& commandManager)
+void BattleUI::UpdateSubCursorPos()
 {
-	m_currentCommandIndex = commandManager.GetCommandIndex();
+	m_currentCommandIndex = m_commandManager->GetCommandIndex();
 
 	// indexが4以上の場合x軸をずらす
 	m_currentCommandIndex >= 4 ? m_subOffsetCursorX = 200.0 : m_subOffsetCursorX = 0.0;

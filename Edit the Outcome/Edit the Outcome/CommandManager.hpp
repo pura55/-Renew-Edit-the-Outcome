@@ -103,12 +103,6 @@ public:
 	/// @brief CommandIndexを取得する関数
 	int32 GetCommandIndex() { return m_currentCommandIndex; }
 
-	/// @brief targetSelectIndexを設定する関数
-	void SetTargetSelectIndex(int32 index) { m_targetSelectIndex = index; }
-
-	/// @brief targetSelectIndexを取得する関数
-	int32 GetSelectIndex() { return m_targetSelectIndex; }
-
 	/// @brief isShowArrowを取得する関数
 	bool GetIsShowArrow() { return m_isShowArrow; }
 
@@ -123,21 +117,15 @@ private:
 	/// 列挙体 ///
 	BaseCommandType m_baseCommandType{ BaseCommandType::Attack };
 
-
-
 	/// 一般変数 ///
 
 	const int32 m_baseMaxIndex{ 2 }; // ベースメニューのコマンドの最大値
 	
 	int32 m_currentCommandIndex{ 0 }; // 現在選択されているコマンドのインデックス
 
-	int32 m_targetSelectIndex{ 0 };  // 選択しているターゲットのインデックス
-
 	bool m_isTargetSelected{ false };  // ターゲットの選択がされているかどうかのフラグ
 
-	//int32 m_maxEnemiesNum{ 0 }; // エネミーの最大数（死んでいた場合繰りさげで最大を入れ替える）
-
-	//int32 m_minEnemiesNum{ 0 }; // エネミーの最小数（死んでいた場合繰り上げで最小を入れ替える）
+	int32 m_maxEnemiesNum{ 0 }; // エネミーの最大数（死んでいた場合繰りさげで最大を入れ替える）
 
 	bool m_isShowArrow{ false };
 

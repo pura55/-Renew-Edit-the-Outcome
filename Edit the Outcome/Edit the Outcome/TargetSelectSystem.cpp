@@ -15,10 +15,11 @@ void TargetSelectSystem::SetReference(Player* player, std::vector<Enemy*> enemie
 
 	// 敵の参照が登録された際に除外の初期設定や最大値の設定も行う
 	InitExclusionEnemies();
-	RegistMaxEnemiesNum();
+	// 最大値を初期化
+	m_maxEnemiesNum = m_enemies.size() - 1;
 }
 
-void TargetSelectSystem::TargetSelect(int32& selectIndex, bool& isSelected)
+void TargetSelectSystem::TargetSelect(bool& isSelected)
 {
 	if (KeySpace.down())
 	{
@@ -28,15 +29,15 @@ void TargetSelectSystem::TargetSelect(int32& selectIndex, bool& isSelected)
 	}
 
 	// カーソル（矢印）を左に移動
-	LeftCursor(m_minEnemiesNum, selectIndex, m_exclusionEnemiesNum.size(), m_exclusionEnemiesNum);
+	LeftCursor(m_minEnemiesNum, m_targetSelectIndex, m_exclusionEnemiesNum);
 
 	// カーソル（矢印）を右に移動
-	RightCursor(m_maxEnemiesNum, selectIndex, m_exclusionEnemiesNum.size(), m_exclusionEnemiesNum);
+	RightCursor(m_maxEnemiesNum, m_targetSelectIndex, m_exclusionEnemiesNum);
 }
 
 void TargetSelectSystem::InitExclusionEnemies()
 {
-	m_exclusionEnemiesNum.reserve(m_enemies.size());// 敵の配列の容量をコピー
+	m_exclusionEnemiesNum.resize(m_enemies.size());// 敵の配列の容量をコピー
 
 	// 除外する敵の番号に初期値として例外番号（-1）を格納
 	for (size_t i = 0; i < m_exclusionEnemiesNum.size(); i++)
@@ -45,7 +46,7 @@ void TargetSelectSystem::InitExclusionEnemies()
 	}
 }
 
-void TargetSelectSystem::ExclusionEnemies(int32& selectIndex)
+void TargetSelectSystem::ExclusionEnemies()
 {
 	// 除外するターゲットを設定
 	for (size_t i = 0; i < m_exclusionEnemiesNum.size(); i++)
@@ -68,7 +69,7 @@ void TargetSelectSystem::ExclusionEnemies(int32& selectIndex)
 			if (m_exclusionEnemiesNum[i] == -1)
 			{
 				m_minEnemiesNum = i; // iと生成番号が一致しているためiを代入
-				selectIndex = m_minEnemiesNum;  // 最小値をターゲットインデックスに適用
+				m_targetSelectIndex = m_minEnemiesNum;  // 最小値をターゲットインデックスに適用
 				decideMinEnemy = true; // 最小値設定完了
 				break;
 			}
@@ -79,7 +80,7 @@ void TargetSelectSystem::ExclusionEnemies(int32& selectIndex)
 	if (not decideMinEnemy)
 	{
 		m_minEnemiesNum = 0;
-		selectIndex = m_minEnemiesNum;
+		m_targetSelectIndex = m_minEnemiesNum;
 		decideMinEnemy = true;
 	}
 
@@ -104,7 +105,7 @@ void TargetSelectSystem::ExclusionEnemies(int32& selectIndex)
 	// 除外されていなかった場合最大値をサイズと同様
 	if (not decideMaxEnemy)
 	{
-		m_maxEnemiesNum = m_exclusionEnemiesNum.size() - 1;
+		m_maxEnemiesNum = m_enemies.size() - 1;
 		decideMaxEnemy = true;
 	}
 }

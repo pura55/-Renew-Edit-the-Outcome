@@ -9,6 +9,7 @@ Player::Player(const PlayerProgressData& progress) : m_progress(progress)
 	m_maxHp = m_progress.maxHp;
 	m_currentHp = m_progress.maxHp;
 	m_currentAtk = m_progress.atk;
+	m_characterPos = { 400.0,400.0 };
 }
 void Player::update()
 {
@@ -26,7 +27,7 @@ void Player::draw() const
 {
 	/// プレイヤー ///
 	{
-		TextureAsset(U"Swordsman")(Rect{ m_regionAtPlayer.x + (m_animationNumX * 200), m_regionAtPlayer.y + (m_animationNumY * 200),  m_regionAtPlayer.w, m_regionAtPlayer.h }).drawAt(m_playerPos);
+		TextureAsset(U"Swordsman")(Rect{ m_regionAtPlayer.x + (m_animationNumX * 200), m_regionAtPlayer.y + (m_animationNumY * 200),  m_regionAtPlayer.w, m_regionAtPlayer.h }).drawAt(m_characterPos);
 	}
 }
 
@@ -78,18 +79,18 @@ void Player::UpdateIdleAnimation()
 		// フレームカウントをリセット
 		m_animationFrameCount = 0;
 	}
-	m_animationFrameCount++;
+	m_animationFrameCount += Scene::DeltaTime();
 }
 
 void Player::ExecuteAttackAnimation()
 {
-	if (not m_nowAttackingAnimation)
+	if (not m_isAttackingAnimation)
 	{
 		// フレームカウントと各軸のアニメーションを設定
 		m_animationFrameCount = 0;
 		m_animationNumX = 0;
 		m_animationNumY = PlayerAttack;
-		m_nowAttackingAnimation = true;
+		m_isAttackingAnimation = true;
 	}
 	// アニメーションフレームが最大値以上になったら
 	// アニメーションを更新する
@@ -103,7 +104,7 @@ void Player::ExecuteAttackAnimation()
 		{
 			m_animationNumX = m_maxAttackAnimationNum;
 			m_actionState = PlayerActionState::PlayerIdle;
-			m_nowAttackingAnimation = false;
+			m_isAttackingAnimation = false;
 			m_isFinishedAttacking = true;
 			return;
 		}
@@ -111,7 +112,7 @@ void Player::ExecuteAttackAnimation()
 		// フレームカウントをリセット
 		m_animationFrameCount = 0;
 	}
-	m_animationFrameCount++;
+	m_animationFrameCount += Scene::DeltaTime();
 }
 
 void Player::ExecuteReceiveDamageAnimation()
@@ -145,7 +146,7 @@ void Player::ExecuteReceiveDamageAnimation()
 		// フレームカウントをリセット
 		m_animationFrameCount = 0;
 	}
-	m_animationFrameCount++;
+	m_animationFrameCount += Scene::DeltaTime();
 }
 
 void Player::ExecuteDeadAnimation()
@@ -168,7 +169,7 @@ void Player::ExecuteDeadAnimation()
 		// フレームカウントをリセット
 		m_animationFrameCount = 0;
 	}
-	m_animationFrameCount++;
+	m_animationFrameCount += Scene::DeltaTime();
 }
 
 void Player::DeathProcess()

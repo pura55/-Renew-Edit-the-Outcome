@@ -1,13 +1,13 @@
 ﻿#include "stdafx.h"
 #include "Enemy.hpp"
 
-Enemy::Enemy(const EnemyData& masterData, int32 generate) : m_masterData(masterData), m_currentHp(masterData.maxHp)
+Enemy::Enemy(const EnemyData& masterData, int32 generate) : m_masterData(masterData)
 {
 	// ステータスの初期化
 	m_lifeState = EnemyLifeState::EnemyAlive;
 	m_actionState = EnemyActionState::EnemyIdle;
 	m_maxHp = m_masterData.maxHp;
-	m_currentHp = m_masterData.maxHp; 
+	m_currentHp = m_masterData.maxHp;
 	m_currentAtk = m_masterData.atk;
 
 	// idを元にアセット名を設定
@@ -24,7 +24,8 @@ Enemy::Enemy(const EnemyData& masterData, int32 generate) : m_masterData(masterD
 	// 生成番号を設定
 	m_generateNum = generate;
 	// 描画位置を設定
-	m_enemyPos.x = m_enemyPos.x + (200.0 * m_generateNum);
+	m_characterPos.x = 750.0;
+	m_characterPos.x = m_characterPos.x + (200.0 * m_generateNum);
 }
 
 void Enemy::update()
@@ -45,7 +46,7 @@ void Enemy::draw() const
 	/// エネミー ///
 	{
 		TextureAsset(m_assetName)(Rect{ m_regionAtEnemy.x + (m_animationNumX * 200), m_regionAtEnemy.y + (m_animationNumY * 200),  m_regionAtEnemy.w, m_regionAtEnemy.h })
-			.mirrored().drawAt(m_enemyPos);
+			.mirrored().drawAt(m_characterPos);
 	}
 }
 
@@ -97,7 +98,7 @@ void Enemy::UpdateIdleAnimation()
 		// フレームカウントをリセット
 		m_animationFrameCount = 0;
 	}
-	m_animationFrameCount++;
+	m_animationFrameCount += Scene::DeltaTime();
 }
 
 void Enemy::ExecuteAttackAnimation()
@@ -130,7 +131,7 @@ void Enemy::ExecuteAttackAnimation()
 		// フレームカウントをリセット
 		m_animationFrameCount = 0;
 	}
-	m_animationFrameCount++;
+	m_animationFrameCount += Scene::DeltaTime();
 }
 
 void Enemy::ExecuteReceiveDamageAnimation()
@@ -164,7 +165,7 @@ void Enemy::ExecuteReceiveDamageAnimation()
 		// フレームカウントをリセット
 		m_animationFrameCount = 0;
 	}
-	m_animationFrameCount++;
+	m_animationFrameCount += Scene::DeltaTime();
 }
 
 void Enemy::ExecuteDeadAnimation()
@@ -187,7 +188,7 @@ void Enemy::ExecuteDeadAnimation()
 		// フレームカウントをリセット
 		m_animationFrameCount = 0;
 	}
-	m_animationFrameCount++;
+	m_animationFrameCount += Scene::DeltaTime();
 }
 
 void Enemy::DeathProcess()

@@ -38,7 +38,7 @@ void BattleScene::update()
 		// 勝利時はルートシーンへ遷移
 		if (battleSystem.GetIsWin())
 		{
-			changeScene(State::LootScene);
+			changeScene(State::BattleScene);
 		}
 	}
 
@@ -82,50 +82,42 @@ void BattleScene::RunSystems()
 	}
 
 	//バトルUIを更新
-	battleUI.update(commandManager);
-	battleUI.draw(commandManager);
+	battleUI.update();
+	battleUI.draw();
 }
 
 void BattleScene::GeneratePlayer()
 {
-	int32 currentID = getData().globalData.m_currentCharacterID; // 現在選ばれているキャラクターのid
-	bool isFound = false; // idが見つかったかどうかのフラグ
+	//int32 currentID = getData().globalData.m_currentCharacterID; // 現在選ばれているキャラクターのid
+	//bool isFound = false; // idが見つかったかどうかのフラグ
 
-	// プレイヤーのデータから該当するidを探す
-	for (const auto& progress : getData().globalData.m_playerProgress)
-	{
-		// IDが一致している場合そのデータをプレイヤーに渡す
-		if (progress.id == currentID)
-		{
-			m_player = std::make_unique<Player>(progress);
-			isFound = true;
-			break;
-		}
-	}
+	//// プレイヤーのデータから該当するidを探す
+	//for (const auto& progress : getData().globalData.m_playerProgress)
+	//{
+	//	// IDが一致している場合そのデータをプレイヤーに渡す
+	//	if (progress.id == currentID)
+	//	{
+	//		m_player = std::make_unique<Player>(progress);
+	//		isFound = true;
+	//		break;
+	//	}
+	//}
 
-	// 見つからない場合の例外処理
-	if (not isFound)
-	{
-		throw Error{ U"GameDataのplayerProgressList内に、ID: {} のプレイヤーデータが存在しません！初期化漏れの可能性があります。"_fmt(currentID) };
-	}
+	//// 見つからない場合の例外処理
+	//if (not isFound)
+	//{
+	//	throw Error{ U"GameDataのplayerProgressList内に、ID: {} のプレイヤーデータが存在しません！初期化漏れの可能性があります。"_fmt(currentID) };
+	//}
+
+	// std::moveでスポナーからシーンにエネミーの所有権を譲渡
+	m_player = std::move(spawner.GeneratePlayer(getData().globalData.m_currentCharacterID,
+		                  getData().globalData.m_playerProgress));
 }
 
 void BattleScene::GenerateEnemies()
 {
-	int32 numOfTimes = Random<int32>(1, 3); // 生成する回数
-
-	m_activeEnemies.clear(); // エネミーの配列をクリア
-
-	// 生成カウントが回数に達したら生成終了
-	for (int32 generateCount = 0; generateCount < numOfTimes; generateCount++)
-	{
-		int32 generateId = Random<int32>(1, 2); // 生成するエネミーのid
-
-		// 敵の生成
-		//「ID：1スライム」,「ID：２オーク」
-		// エネミーのデータと生成番号(generateCount)を渡す
-		m_activeEnemies.push_back(Enemy(getData().globalData.GetEnemyData(generateId), generateCount));
-	}
+	// std::moveでスポナーからシーンにエネミーの所有権を譲渡
+	m_activeEnemies = std::move(spawner.GenerateEnemies(getData().globalData.m_currentRound, getData().globalData, getData().globalData.m_randomEngine));
 }
 
 void BattleScene::PassReferences()
@@ -147,7 +139,7 @@ void BattleScene::PassReferences()
 
 		// 参照関係を構築
 		battleSystem.SetReference(playerPtr, enemyPtr);
-		battleUI.SetReference(battleSystem, playerPtr, enemyPtr);
+		battleUI.SetReference(battleSystem, commandManager, targetSelectSystem, playerPtr, enemyPtr);
 		healthManager.SetReference(playerPtr, enemyPtr);
 		commandManager.SetReference(targetSelectSystem, healthManager, playerPtr, enemyPtr);
 		targetSelectSystem.SetReference(playerPtr, enemyPtr);

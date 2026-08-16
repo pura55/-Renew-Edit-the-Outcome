@@ -64,7 +64,7 @@ void Selector::LeftCursor(const int32 minIndex, int32& selectIndex)
 	}
 }
 
-void Selector::LeftCursor(const int32 minIndex, int32& selectIndex, const size_t exclusionSize, const std::vector<int32> exclusionTargetNum)
+void Selector::LeftCursor(const int32 minIndex, int32& selectIndex, const std::vector<int32> exclusionTargetNum)
 {
 	if (KeyA.down())
 	{
@@ -72,7 +72,7 @@ void Selector::LeftCursor(const int32 minIndex, int32& selectIndex, const size_t
 		selectIndex -= 1;
 
 		// selectIndexと除外番号が一致している場合selectIndexを一つ飛ばす
-		for (size_t i = 0; i < exclusionSize; i++)
+		for (size_t i = 0; i < exclusionTargetNum.size(); i++)
 		{
 			if (exclusionTargetNum[i] == selectIndex)
 			{
@@ -103,7 +103,7 @@ void Selector::RightCursor(const int32 maxIndex, int32& selectIndex)
 	}
 }
 
-void Selector::RightCursor(const int32 maxIndex, int32& selectIndex, const size_t exclusionSize, const std::vector<int32> exclusionTargetNum)
+void Selector::RightCursor(const int32 maxIndex, int32& selectIndex, const std::vector<int32> exclusionTargetNum)
 {
 	if (KeyD.down())
 	{
@@ -111,7 +111,7 @@ void Selector::RightCursor(const int32 maxIndex, int32& selectIndex, const size_
 		selectIndex += 1;
 
 		// selectIndexと除外番号が一致している場合selectIndexを一つ飛ばす
-		for (size_t i = 0; i < exclusionSize; i++)
+		for (size_t i = 0; i < exclusionTargetNum.size(); i++)
 		{
 			if (exclusionTargetNum[i] == selectIndex)
 			{
