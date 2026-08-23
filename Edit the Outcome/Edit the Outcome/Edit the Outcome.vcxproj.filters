@@ -149,12 +149,6 @@
     <Filter Include="3_BattleScene\System/Magager">
       <UniqueIdentifier>{ed4b3489-be4b-4546-8257-76f1021c165d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="4_LootScene">
-      <UniqueIdentifier>{d1081b67-ede9-4d07-94d3-0901d750eae2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4_LootScene\Renderer">
-      <UniqueIdentifier>{901a6799-a182-4447-b72b-f814467bf87d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="0_System\Struct_ExternalData">
       <UniqueIdentifier>{ad0c9a3b-6926-46be-b11f-c8b4031cda0f}</UniqueIdentifier>
     </Filter>
@@ -163,12 +157,6 @@
     </Filter>
     <Filter Include="0_System\BaseClass">
       <UniqueIdentifier>{2369ed58-9edb-4e63-bae2-b407e2abd15f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4_LootScene\System">
-      <UniqueIdentifier>{f92964b2-1c7a-49b3-adc2-ec4dd3a36476}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4_LootScene\Data">
-      <UniqueIdentifier>{e698ce05-a4ac-4376-8b38-363f9159630a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -215,15 +203,6 @@
     <ClCompile Include="EnemyActionManager.cpp">
       <Filter>3_BattleScene\System/Magager</Filter>
     </ClCompile>
-    <ClCompile Include="LootScene.cpp">
-      <Filter>4_LootScene</Filter>
-    </ClCompile>
-    <ClCompile Include="LootBg.cpp">
-      <Filter>4_LootScene\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="LootUI.cpp">
-      <Filter>4_LootScene\Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="GlobalData.cpp">
       <Filter>0_System\GameData</Filter>
     </ClCompile>
@@ -236,11 +215,17 @@
     <ClCompile Include="RandomPicker.cpp">
       <Filter>0_System\BaseClass</Filter>
     </ClCompile>
-    <ClCompile Include="LootSystem.cpp">
-      <Filter>4_LootScene\System</Filter>
-    </ClCompile>
     <ClCompile Include="Spawner.cpp">
       <Filter>3_BattleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="StatusUI.cpp">
+      <Filter>3_BattleScene\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandWindow.cpp">
+      <Filter>3_BattleScene\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectArrow.cpp">
+      <Filter>3_BattleScene\Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -949,15 +934,6 @@
     <ClInclude Include="EnemyActionManager.hpp">
       <Filter>3_BattleScene\System/Magager</Filter>
     </ClInclude>
-    <ClInclude Include="LootScene.hpp">
-      <Filter>4_LootScene</Filter>
-    </ClInclude>
-    <ClInclude Include="LootBg.hpp">
-      <Filter>4_LootScene\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="LootUI.hpp">
-      <Filter>4_LootScene\Renderer</Filter>
-    </ClInclude>
     <ClInclude Include="EnemyData.hpp">
       <Filter>0_System\Struct_ExternalData</Filter>
     </ClInclude>
@@ -976,35 +952,26 @@
     <ClInclude Include="RandomEngine.hpp">
       <Filter>0_System\GameData</Filter>
     </ClInclude>
-    <ClInclude Include="ItemRate.hpp">
-      <Filter>4_LootScene</Filter>
-    </ClInclude>
     <ClInclude Include="Selector.hpp">
       <Filter>0_System\BaseClass</Filter>
     </ClInclude>
     <ClInclude Include="RandomPicker.hpp">
       <Filter>0_System\BaseClass</Filter>
     </ClInclude>
-    <ClInclude Include="LootSystem.hpp">
-      <Filter>4_LootScene\System</Filter>
-    </ClInclude>
-    <ClInclude Include="StatusAttack.hpp">
-      <Filter>4_LootScene\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="StatusDefence.hpp">
-      <Filter>4_LootScene\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="StatusSkill.hpp">
-      <Filter>4_LootScene\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="LootItemData.hpp">
-      <Filter>4_LootScene\Data</Filter>
-    </ClInclude>
     <ClInclude Include="Character.hpp">
       <Filter>0_System\BaseClass</Filter>
     </ClInclude>
     <ClInclude Include="Spawner.hpp">
       <Filter>3_BattleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="StatusUI.hpp">
+      <Filter>3_BattleScene\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandWindow.hpp">
+      <Filter>3_BattleScene\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectArrow.hpp">
+      <Filter>3_BattleScene\Renderer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

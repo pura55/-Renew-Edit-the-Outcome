@@ -121,20 +121,19 @@
     <ClCompile Include="BattleUI.cpp" />
     <ClCompile Include="BootScene.cpp" />
     <ClCompile Include="CommandManager.cpp" />
+    <ClCompile Include="CommandWindow.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyActionManager.cpp" />
     <ClCompile Include="GlobalData.cpp" />
     <ClCompile Include="HealthManager.cpp" />
     <ClCompile Include="ImageLoader.cpp" />
-    <ClCompile Include="LootBg.cpp" />
-    <ClCompile Include="LootScene.cpp" />
-    <ClCompile Include="LootSystem.cpp" />
-    <ClCompile Include="LootUI.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RandomPicker.cpp" />
+    <ClCompile Include="SelectArrow.cpp" />
     <ClCompile Include="Selector.cpp" />
     <ClCompile Include="Spawner.cpp" />
+    <ClCompile Include="StatusUI.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -355,6 +354,7 @@
     <ClInclude Include="Character.hpp" />
     <ClInclude Include="CommandData.hpp" />
     <ClInclude Include="CommandManager.hpp" />
+    <ClInclude Include="CommandWindow.hpp" />
     <ClInclude Include="Common.hpp" />
     <ClInclude Include="Enemy.hpp" />
     <ClInclude Include="EnemyActionManager.hpp" />
@@ -362,21 +362,14 @@
     <ClInclude Include="GlobalData.hpp" />
     <ClInclude Include="HealthManager.hpp" />
     <ClInclude Include="ImageLoader.hpp" />
-    <ClInclude Include="ItemRate.hpp" />
-    <ClInclude Include="LootBg.hpp" />
-    <ClInclude Include="LootItemData.hpp" />
-    <ClInclude Include="LootScene.hpp" />
-    <ClInclude Include="LootSystem.hpp" />
-    <ClInclude Include="LootUI.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="PlayerProgressData.hpp" />
     <ClInclude Include="RandomEngine.hpp" />
     <ClInclude Include="RandomPicker.hpp" />
+    <ClInclude Include="SelectArrow.hpp" />
     <ClInclude Include="Selector.hpp" />
     <ClInclude Include="Spawner.hpp" />
-    <ClInclude Include="StatusAttack.hpp" />
-    <ClInclude Include="StatusDefence.hpp" />
-    <ClInclude Include="StatusSkill.hpp" />
+    <ClInclude Include="StatusUI.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="TargetSelectSystem.hpp" />
     <ClInclude Include="TitleScene.hpp" />
