@@ -33,19 +33,19 @@ void BattleScene::update()
 		// 敗北時はタイトルシーンへ遷移
 		if (battleSystem.GetIsLose())
 		{
+			// ラウンドをリセット
+			getData().globalData.ResetRound();
+
 			changeScene(State::TitleScene);
 		}
-		// 勝利時はルートシーンへ遷移
+		// 勝利時はバトルシーンへ遷移
 		if (battleSystem.GetIsWin())
 		{
+			// ラウンドを進める
+			getData().globalData.AddRound();
+
 			changeScene(State::BattleScene);
 		}
-	}
-
-	// デバッグ用コード
-	if (KeyL.down())
-	{
-		changeScene(State::LootScene);
 	}
 
 	// デバッグ用コード
@@ -88,27 +88,6 @@ void BattleScene::RunSystems()
 
 void BattleScene::GeneratePlayer()
 {
-	//int32 currentID = getData().globalData.m_currentCharacterID; // 現在選ばれているキャラクターのid
-	//bool isFound = false; // idが見つかったかどうかのフラグ
-
-	//// プレイヤーのデータから該当するidを探す
-	//for (const auto& progress : getData().globalData.m_playerProgress)
-	//{
-	//	// IDが一致している場合そのデータをプレイヤーに渡す
-	//	if (progress.id == currentID)
-	//	{
-	//		m_player = std::make_unique<Player>(progress);
-	//		isFound = true;
-	//		break;
-	//	}
-	//}
-
-	//// 見つからない場合の例外処理
-	//if (not isFound)
-	//{
-	//	throw Error{ U"GameDataのplayerProgressList内に、ID: {} のプレイヤーデータが存在しません！初期化漏れの可能性があります。"_fmt(currentID) };
-	//}
-
 	// std::moveでスポナーからシーンにエネミーの所有権を譲渡
 	m_player = std::move(spawner.GeneratePlayer(getData().globalData.m_currentCharacterID,
 		                  getData().globalData.m_playerProgress));
