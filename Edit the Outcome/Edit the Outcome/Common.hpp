@@ -10,6 +10,7 @@ enum class State
 	BootScene,   // bootシーン
 	TitleScene,  // タイトルシーン
 	BattleScene, // バトルシーン
+	CutScene
 };
 
 ///<summary>

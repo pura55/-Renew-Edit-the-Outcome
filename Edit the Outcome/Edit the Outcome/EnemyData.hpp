@@ -12,4 +12,7 @@ struct EnemyData
 	String name;   // 名前
 	int32 maxHp;   // 体力
 	int32 atk;     // 攻撃力
+	int32 spr_atk; // 攻撃スプライトの枚数
+	int32 spr_hight_atk; // 攻撃スプライトの高さ
+	int32 spr_hight_dmg; // 被ダメージスプライトの高さ
 };

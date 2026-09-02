@@ -19,6 +19,10 @@ public:
 		return m_healthPct = m_fullHealthPct * (m_currentHp / m_maxHp);
 	}
 
+	/// @brief 座標を返す関数
+	/// @return キャラクターの座標
+	Vec2 GetPosition() { return m_characterPos; }
+
 	/// @brief 攻撃終了のフラグを返す関数
 	bool GetFinishedAttacking()const { return m_isFinishedAttacking; }
 

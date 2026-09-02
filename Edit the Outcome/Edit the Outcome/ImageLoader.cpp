@@ -26,9 +26,12 @@ void ImageLoader::LoadBattleAssets()
 	TextureAsset::Register(U"LootBgMagic", U"./image/Bg/loot_magic_b.jpg");
 
 	/// キャラクター ///
-	TextureAsset::Register(U"Swordsman", U"./image/player/Swordsman/Swordsman_with_shadows/Swordsman.png");
-	TextureAsset::Register(U"Slime", U"./image/enemy/Slime/Slime_with_shadows/Slime.png");
-	TextureAsset::Register(U"Orc", U"./image/enemy/Orc/Orc_with_shadows/Orc.png");
+	TextureAsset::Register(U"Swordsman", U"./image/player/Swordsman/Swordsman.png");
+	TextureAsset::Register(U"Slime", U"./image/enemy/Slime/Slime.png");
+	TextureAsset::Register(U"Orc", U"./image/enemy/Orc/Orc.png");
+	TextureAsset::Register(U"Bat",U"./image/enemy/Bat/Bat.png");
+	TextureAsset::Register(U"Skeleton", U"./image/enemy/Skeleton/Skeleton.png");
+	TextureAsset::Register(U"Werewolf", U"./image/enemy/Werewolf/Werewolf.png");
 
 	/// UI ///
 	TextureAsset::Register(U"CommandWindow", U"./image/CommandWindowSmall.png");

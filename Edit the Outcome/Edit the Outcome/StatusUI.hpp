@@ -18,6 +18,7 @@ public:
 	void draw(Player* player, std::vector<Enemy*> enemies) const;
 
 private:
+	Vec2 m_screenSize{ 140.0, 25.0 };
 	// ステータスの座標（hpなど）
 	const double m_statusPosY{ 450.0 };
 };

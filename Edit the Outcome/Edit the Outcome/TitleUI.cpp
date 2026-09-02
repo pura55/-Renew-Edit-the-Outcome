@@ -7,8 +7,7 @@ TitleUI::TitleUI()
 
 void TitleUI::update()
 {
-	isKeyDownB();
-	isKeyDownEscape();
+	m_button.Update();
 }
 
 void TitleUI::draw()const
@@ -16,22 +15,24 @@ void TitleUI::draw()const
 	// タイトル描画
 	FontAsset(U"TitleFont")(U"TitleScene")
 		.drawAt(TextStyle::OutlineShadow(0.2, ColorF{ 0.2, 0.6, 0.2 }, Vec2{ 3, 3 }, ColorF{ 0.0, 0.5 }), 100, Vec2{ 400, 100 });
+
+	TextureAsset(U"BattleBg").drawAt(Vec2{ Scene::CenterF()});
+
+	m_button.Draw();
 }
 
-bool TitleUI::isKeyDownB()
+bool TitleUI::isPlayButtonPush()
 {
-	//[B]keyが押されたら
-	if (KeyB.down())
+	if (m_button.IsFullBlinkCount())
 	{
 		return true;
 	}
 	return false;
 }
 
-bool TitleUI::isKeyDownEscape()
+bool TitleUI::isEndButtonPush()
 {
-	//[Escape]keyが押されたら
-	if (KeyEscape.down())
+	if (m_button.GetEndPressed())
 	{
 		return true;
 	}

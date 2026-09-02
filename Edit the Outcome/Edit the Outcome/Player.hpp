@@ -38,8 +38,6 @@ public:
 	void update() override;
 	void draw() const override;
 
-	Vec2 GetPlayerPos()const { return m_characterPos; }
-
 	/// @brief アクションステートを設定する関数 
 	void SetActionState(const int32 actionNum)
 	{

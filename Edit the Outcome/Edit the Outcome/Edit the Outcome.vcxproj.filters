@@ -158,6 +158,9 @@
     <Filter Include="0_System\BaseClass">
       <UniqueIdentifier>{2369ed58-9edb-4e63-bae2-b407e2abd15f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="4_CutScene">
+      <UniqueIdentifier>{fe7d6cf4-281a-40b8-bd82-688b248138e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -212,9 +215,6 @@
     <ClCompile Include="Selector.cpp">
       <Filter>0_System\BaseClass</Filter>
     </ClCompile>
-    <ClCompile Include="RandomPicker.cpp">
-      <Filter>0_System\BaseClass</Filter>
-    </ClCompile>
     <ClCompile Include="Spawner.cpp">
       <Filter>3_BattleScene</Filter>
     </ClCompile>
@@ -225,6 +225,21 @@
       <Filter>3_BattleScene\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="SelectArrow.cpp">
+      <Filter>3_BattleScene\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>2_TitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="CutScene.cpp">
+      <Filter>4_CutScene</Filter>
+    </ClCompile>
+    <ClCompile Include="CutTime.cpp">
+      <Filter>4_CutScene</Filter>
+    </ClCompile>
+    <ClCompile Include="RoundText.cpp">
+      <Filter>4_CutScene</Filter>
+    </ClCompile>
+    <ClCompile Include="DamageDisplay.cpp">
       <Filter>3_BattleScene\Renderer</Filter>
     </ClCompile>
   </ItemGroup>
@@ -955,9 +970,6 @@
     <ClInclude Include="Selector.hpp">
       <Filter>0_System\BaseClass</Filter>
     </ClInclude>
-    <ClInclude Include="RandomPicker.hpp">
-      <Filter>0_System\BaseClass</Filter>
-    </ClInclude>
     <ClInclude Include="Character.hpp">
       <Filter>0_System\BaseClass</Filter>
     </ClInclude>
@@ -971,6 +983,21 @@
       <Filter>3_BattleScene\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="SelectArrow.hpp">
+      <Filter>3_BattleScene\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.hpp">
+      <Filter>2_TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="CutScene.hpp">
+      <Filter>4_CutScene</Filter>
+    </ClInclude>
+    <ClInclude Include="CutTime.hpp">
+      <Filter>4_CutScene</Filter>
+    </ClInclude>
+    <ClInclude Include="RoundText.hpp">
+      <Filter>4_CutScene</Filter>
+    </ClInclude>
+    <ClInclude Include="DamageDisplay.hpp">
       <Filter>3_BattleScene\Renderer</Filter>
     </ClInclude>
   </ItemGroup>

@@ -22,6 +22,7 @@ void StatusUI::update()
 /// </remarks>
 void StatusUI::draw(Player* player, std::vector<Enemy*> enemies) const
 {
+	RectF{ 345.0, m_statusPosY - m_screenSize.y / 2, m_screenSize.x, m_screenSize.y }.draw(Palette::Black);
 	// プレイヤーのHp
 	FontAsset(U"HUD")(U"{}"_fmt(player->GetPlayerHp()))
 		.drawAt(TextStyle::OutlineShadow(0.2, ColorF{ 0.2, 0.6, 0.2 }, Vec2{ 3, 3 }, ColorF{ 0.0, 0.5 }), 18, Vec2{ 470.0, m_statusPosY });
@@ -32,6 +33,7 @@ void StatusUI::draw(Player* player, std::vector<Enemy*> enemies) const
 
 	for (auto* enemy: enemies)
 	{
+		RectF{ 695.0 + 200.0 * enemy->GetGenerateNum(), m_statusPosY - m_screenSize.y / 2, m_screenSize.x, m_screenSize.y }.draw(Palette::Black);
 		// エネミーのHp
 		FontAsset(U"HUD")(U"{}"_fmt(enemy->GetEnemyHp())).drawAt(TextStyle::OutlineShadow(0.2, ColorF{ 0.2, 0.6, 0.2 }, Vec2{ 3, 3 }, ColorF{ 0.0, 0.5 }), 18, Vec2{ 820.0 + 200.0 * enemy->GetGenerateNum(), m_statusPosY });
 		// 空白の体力ゲージ

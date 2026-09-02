@@ -9,6 +9,11 @@ Enemy::Enemy(const EnemyData& masterData, int32 generate) : m_masterData(masterD
 	m_maxHp = m_masterData.maxHp;
 	m_currentHp = m_masterData.maxHp;
 	m_currentAtk = m_masterData.atk;
+	m_maxAttackAnimationNum = m_masterData.spr_atk;
+	m_attackAnimationHight = m_masterData.spr_hight_atk;
+	m_dmgAnimationHight = m_masterData.spr_hight_dmg;
+	m_deadAnimationHight = m_masterData.spr_hight_dmg + 1;
+	
 
 	// idを元にアセット名を設定
 	switch (m_masterData.id)
@@ -18,6 +23,15 @@ Enemy::Enemy(const EnemyData& masterData, int32 generate) : m_masterData(masterD
 		break;
 	case 2:
 		m_assetName = U"Orc";
+		break;
+	case 3:
+		m_assetName = U"Bat";
+		break;
+	case 4:
+		m_assetName = U"Skeleton";
+		break;
+	case 5:
+		m_assetName = U"Werewolf";
 		break;
 	}
 
@@ -108,7 +122,7 @@ void Enemy::ExecuteAttackAnimation()
 		// フレームカウントと各軸のアニメーションを設定
 		m_animationFrameCount = 0;
 		m_animationNumX = 0;
-		m_animationNumY = EnemyAttack;
+		m_animationNumY = m_attackAnimationHight;
 		m_isAttackingAnimation = true;
 	}
 	// アニメーションフレームが最大値以上になったら
@@ -141,7 +155,7 @@ void Enemy::ExecuteReceiveDamageAnimation()
 		// フレームカウントと各軸のアニメーションを設定
 		m_animationFrameCount = 0;
 		m_animationNumX = 0;
-		m_animationNumY = EnemyReceiveDamage;
+		m_animationNumY = m_dmgAnimationHight;
 		m_isReceivingDamage = true;
 	}
 	// アニメーションフレームが最大値以上になったら
@@ -201,7 +215,7 @@ void Enemy::DeathProcess()
 		m_animationFrameCount = 0;
 		// 各軸のアニメーションを設定
 		m_animationNumX = 0;
-		m_animationNumY = EnemyDie;
+		m_animationNumY = m_deadAnimationHight;
 	}
 
 	if (m_isDead)

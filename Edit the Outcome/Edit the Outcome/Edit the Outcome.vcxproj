@@ -120,8 +120,12 @@
     <ClCompile Include="BattleSystem.cpp" />
     <ClCompile Include="BattleUI.cpp" />
     <ClCompile Include="BootScene.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="CommandManager.cpp" />
     <ClCompile Include="CommandWindow.cpp" />
+    <ClCompile Include="CutScene.cpp" />
+    <ClCompile Include="CutTime.cpp" />
+    <ClCompile Include="DamageDisplay.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyActionManager.cpp" />
     <ClCompile Include="GlobalData.cpp" />
@@ -129,7 +133,7 @@
     <ClCompile Include="ImageLoader.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="RandomPicker.cpp" />
+    <ClCompile Include="RoundText.cpp" />
     <ClCompile Include="SelectArrow.cpp" />
     <ClCompile Include="Selector.cpp" />
     <ClCompile Include="Spawner.cpp" />
@@ -351,11 +355,15 @@
     <ClInclude Include="BattleSystem.hpp" />
     <ClInclude Include="BattleUI.hpp" />
     <ClInclude Include="BootScene.hpp" />
+    <ClInclude Include="Button.hpp" />
     <ClInclude Include="Character.hpp" />
     <ClInclude Include="CommandData.hpp" />
     <ClInclude Include="CommandManager.hpp" />
     <ClInclude Include="CommandWindow.hpp" />
     <ClInclude Include="Common.hpp" />
+    <ClInclude Include="CutScene.hpp" />
+    <ClInclude Include="CutTime.hpp" />
+    <ClInclude Include="DamageDisplay.hpp" />
     <ClInclude Include="Enemy.hpp" />
     <ClInclude Include="EnemyActionManager.hpp" />
     <ClInclude Include="EnemyData.hpp" />
@@ -365,7 +373,7 @@
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="PlayerProgressData.hpp" />
     <ClInclude Include="RandomEngine.hpp" />
-    <ClInclude Include="RandomPicker.hpp" />
+    <ClInclude Include="RoundText.hpp" />
     <ClInclude Include="SelectArrow.hpp" />
     <ClInclude Include="Selector.hpp" />
     <ClInclude Include="Spawner.hpp" />

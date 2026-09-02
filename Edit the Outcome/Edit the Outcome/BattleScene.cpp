@@ -4,7 +4,7 @@
 BattleScene::BattleScene(const InitData& init):ProjectApp::Scene{ init }
 {
 	// バトルシーンのアセットを読み込み
-	getData().globalData.imageLoader.LoadBattleAssets();
+	//getData().globalData.imageLoader.LoadBattleAssets();
 
 	// プレイヤーの生成
 	GeneratePlayer();
@@ -44,7 +44,7 @@ void BattleScene::update()
 			// ラウンドを進める
 			getData().globalData.AddRound();
 
-			changeScene(State::BattleScene);
+			changeScene(State::CutScene);
 		}
 	}
 
@@ -119,7 +119,7 @@ void BattleScene::PassReferences()
 		// 参照関係を構築
 		battleSystem.SetReference(playerPtr, enemyPtr);
 		battleUI.SetReference(battleSystem, commandManager, targetSelectSystem, playerPtr, enemyPtr);
-		healthManager.SetReference(playerPtr, enemyPtr);
+		healthManager.SetReference(playerPtr, enemyPtr, battleUI);
 		commandManager.SetReference(targetSelectSystem, healthManager, playerPtr, enemyPtr);
 		targetSelectSystem.SetReference(playerPtr, enemyPtr);
 		enemyActionManager.SetReference(healthManager, enemyPtr);

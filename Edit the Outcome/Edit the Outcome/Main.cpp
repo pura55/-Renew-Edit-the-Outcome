@@ -3,6 +3,7 @@
 # include "BootScene.hpp"
 # include "TitleScene.hpp"
 # include "BattleScene.hpp"
+# include "CutScene.hpp"
 
 void Main()
 {
@@ -38,6 +39,7 @@ void Main()
 	manager.add<BootScene>(State::BootScene);
 	manager.add<TitleScene>(State::TitleScene);
 	manager.add<BattleScene>(State::BattleScene);
+	manager.add<CutScene>(State::CutScene);
 
 	while (System::Update())
 	{

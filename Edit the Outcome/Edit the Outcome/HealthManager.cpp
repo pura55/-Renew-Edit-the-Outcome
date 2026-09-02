@@ -2,15 +2,17 @@
 #include "HealthManager.hpp"
 #include "Player.hpp"
 #include "Enemy.hpp"
+#include "BattleUI.hpp"
 
 HealthManager::HealthManager()
 {
 }
 
-void HealthManager::SetReference(Player* player, std::vector<Enemy*> enemies)
+void HealthManager::SetReference(Player* player, std::vector<Enemy*> enemies, BattleUI& battleUI)
 {
 	m_player = player;
 	m_enemies = enemies;
+	m_battleUI = &battleUI;
 }
 
 void HealthManager::PlayerAttackEnemy(int32 playerAtk, int32 enemyGenerateNum)
@@ -31,6 +33,9 @@ void HealthManager::PlayerAttackEnemy(int32 playerAtk, int32 enemyGenerateNum)
 
 			// 行動状態を被ダメージに設定
 			enemies->SetActionState(4);
+
+			// ダメージ表示
+			m_battleUI->PassDamageQueue(playerAtk, enemies->GetPosition());
 		}
 	}
 }
@@ -47,4 +52,7 @@ void HealthManager::EnemyAttackPlayer(int32 enemyAtk)
 
 	// 行動状態を被ダメージに設定
 	m_player->SetActionState(5);
+
+	// ダメージ表示
+	m_battleUI->PassDamageQueue(enemyAtk, m_player->GetPosition());
 }

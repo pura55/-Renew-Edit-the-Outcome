@@ -4,6 +4,7 @@
 // 前方宣言
 class Player;
 class Enemy;
+class BattleUI;
 
 /// <summary>
 /// ヘルスマネージャー
@@ -16,7 +17,7 @@ public:
 	HealthManager();
 
 	/// @brief 外部オブジェクトへの参照を設定する関数
-	void SetReference(Player* player, std::vector<Enemy*> enemies);
+	void SetReference(Player* player, std::vector<Enemy*> enemies, BattleUI& battleUI);
 
 	/// ダメージ関数 ///
 #pragma region Damage
@@ -30,4 +31,5 @@ public:
 private:
 	Player* m_player{ nullptr };
 	std::vector<Enemy*> m_enemies{ nullptr };
+	BattleUI* m_battleUI{ nullptr };
 };

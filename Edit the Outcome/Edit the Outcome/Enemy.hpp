@@ -108,13 +108,19 @@ private:
 
 	String m_assetName;  // アセット名
 	
-	const int32 m_maxAnimationNum{ 6 };    // アニメーションの最大枚数
+	int32 m_maxAnimationNum{ 6 };    // アニメーションの最大枚数
 
-	const int32 m_maxAttackAnimationNum{ 5 }; // 攻撃アニメーションの最大枚数
+	int32 m_maxAttackAnimationNum{ 5 }; // 攻撃アニメーションの最大枚数
 
-	const int32 m_maxDamageAnimationNum{ 3 }; // 被ダメージアニメーションの最大枚数
+	int32 m_maxDamageAnimationNum{ 3 }; // 被ダメージアニメーションの最大枚数
 
-	const int32 m_maxDeadAnimationNum{ 3 }; // 死亡アニメーションの最大枚数
+	int32 m_maxDeadAnimationNum{ 3 }; // 死亡アニメーションの最大枚数
+
+	int32 m_attackAnimationHight{ 0 }; // 攻撃アニメーションの高さ
+
+	int32 m_dmgAnimationHight{ 0 }; // 被ダメージアニメーションの高さ
+
+	int32 m_deadAnimationHight{ 0 }; // 死亡アニメーションの高さ
 
 	Rect m_regionAtEnemy{ 0, 0, 200, 200 };// 画像取得範囲
 

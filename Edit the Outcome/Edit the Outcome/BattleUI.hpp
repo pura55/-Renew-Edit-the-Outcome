@@ -3,6 +3,7 @@
 #include "StatusUI.hpp"
 #include "CommandWindow.hpp"
 #include "SelectArrow.hpp"
+#include "DamageDisplay.hpp"
 
 // 前方宣言
 class BattleSystem;
@@ -33,10 +34,23 @@ public:
 	/// @brief 外部オブジェクトへの参照を設定する関数
 	void SetReference(BattleSystem& battleSystem, CommandManager& commandManager ,TargetSelectSystem& targetSelectSystem, Player* player, std::vector<Enemy*> enemy);
 
+	/// @brief ダメージ表示を配列に渡す関数
+	void PassDamageQueue(int32 damage, Vec2 position);
+
+private:
+	/// @brief ダメージ表示をインキューする関数
+	void DamageInQueue();
+
+	/// @brief ダメージ表示を更新する関数
+	void UpdateDamageDisplays();
+
+	/// @brief ダメージ表示をキューに戻す関数
+	void ReturnDamageQueue();
+
 private:
 
-	/// 選択矢印 ///
-	Vec2 m_selectArrowPos{ 750.0, 325.0 };
+	// ダメージ表示を保持する数
+	int32 m_damageDisplayNumbers{ 10 };
 
 	/// ポインタの保持 ///
 
@@ -56,6 +70,9 @@ private:
 	StatusUI statusUI; // ステータスUI
 	CommandWindow commandWindow; // コマンドウィンドウ
 	SelectArrow selectArrow; // セレクトアロー
+
+	std::queue<DamageDisplay> m_damageDisplayQueue;
+	std::vector<DamageDisplay> m_damageDisplay;
 #pragma endregion
 
 };

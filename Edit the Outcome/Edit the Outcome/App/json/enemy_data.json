@@ -4,14 +4,47 @@
         {
             "id": 1,
             "name": "スライム",
-            "hp": 15,
-            "atk": 3
+            "hp": 10,
+            "atk": 1,
+            "spr_atk": 5,
+            "spr_hight_atk": 2,
+            "spr_hight_dmg": 4
         },
         {
             "id": 2,
             "name": "オーク",
+            "hp": 15,
+            "atk": 3,
+            "spr_atk": 5,
+            "spr_hight_atk": 2,
+            "spr_hight_dmg": 4
+        },
+        {
+            "id": 3,
+            "name": "バット",
+            "hp": 10,
+            "atk": 7,
+            "spr_atk": 5,
+            "spr_hight_atk": 1,
+            "spr_hight_dmg": 3
+        },
+        {
+            "id": 4,
+            "name": "スケルトン",
+            "hp": 15,
+            "atk": 7,
+            "spr_atk": 5,
+            "spr_hight_atk": 2,
+            "spr_hight_dmg": 6
+        },
+        {
+            "id": 5,
+            "name": "ワーウルフ",
             "hp": 20,
-            "atk": 5
+            "atk": 15,
+            "spr_atk": 8,
+            "spr_hight_atk": 2,
+            "spr_hight_dmg": 4
         }
     ]
 }
