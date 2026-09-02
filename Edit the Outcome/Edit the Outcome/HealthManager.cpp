@@ -42,8 +42,41 @@ void HealthManager::PlayerAttackEnemy(int32 playerAtk, int32 enemyGenerateNum)
 
 void HealthManager::EnemyAttackPlayer(int32 enemyAtk)
 {
+	// 現在の守備力
+	int32 playerDefense = m_player->GetPlayerDefense();
+
+	// ダメージ
+	int32 damage = enemyAtk;
+
+	// 守備力がある場合
+	if (playerDefense > 0)
+	{
+		// 守備力がダメージより多きい場合
+		if ((damage < playerDefense))
+		{
+			// 守備力からダメージを減算
+			playerDefense = playerDefense - damage;
+
+			// 守備力を再設定
+			m_player->SetPlayerDefense(playerDefense);
+
+			// ダメージを０に設定
+			damage = 0;
+		}
+		else
+		{
+			// ダメージから守備力を減算
+			damage = damage - playerDefense;
+
+			// 守備力を0に設定
+			m_player->SetPlayerDefense(0);
+		}
+		
+	}
+	
+
 	// プレイヤーのHpを修正
-	int32 replacePlayerHp = m_player->GetPlayerHp() - enemyAtk;
+	int32 replacePlayerHp = m_player->GetPlayerHp() - damage;
 	// 0以下の場合0に設定
 	if (replacePlayerHp <= 0) replacePlayerHp = 0;
 
@@ -54,5 +87,5 @@ void HealthManager::EnemyAttackPlayer(int32 enemyAtk)
 	m_player->SetActionState(5);
 
 	// ダメージ表示
-	m_battleUI->PassDamageQueue(enemyAtk, m_player->GetPosition());
+	m_battleUI->PassDamageQueue(damage, m_player->GetPosition());
 }

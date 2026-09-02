@@ -26,6 +26,15 @@ void StatusUI::draw(Player* player, std::vector<Enemy*> enemies) const
 	// プレイヤーのHp
 	FontAsset(U"HUD")(U"{}"_fmt(player->GetPlayerHp()))
 		.drawAt(TextStyle::OutlineShadow(0.2, ColorF{ 0.2, 0.6, 0.2 }, Vec2{ 3, 3 }, ColorF{ 0.0, 0.5 }), 18, Vec2{ 470.0, m_statusPosY });
+
+	if (player->GetPlayerDefense() > 0)
+	{
+		RectF{ 480.0, m_statusPosY - m_screenSize.y / 2, 40.0, m_screenSize.y }.draw(Palette::Black);
+		// プレイヤーの守備力
+		FontAsset(U"HUD")(U"+{}"_fmt(player->GetPlayerDefense()))
+			.drawAt(Vec2{ 500.0, m_statusPosY }, Palette::Yellow);
+	}
+
 	// 空白の体力ゲージ
 	TextureAsset(U"EmptyHealthbar").draw(350.0, m_statusPosY);
 	// 緑色の体力ゲージ

@@ -145,6 +145,7 @@ void CommandManager::SelectBaseCommand(bool& isCommandSelected)
 	case BaseCommandType::Diffence: //防御を選択時
 		if (KeySpace.down())
 		{
+			m_player->AddDefense();
 			m_currentCommandIndex = 0;
 			isCommandSelected = true; // 選択終了
 		}

@@ -73,6 +73,16 @@ public:
 	/// @brief プレイヤーのhpを設定する関数
 	void SetPlayerHp(int32 hp) { m_currentHp = hp; }
 
+	/// @brief 守備力を追加する関数
+	void AddDefense() { m_defense += 10; }
+
+	/// @brief 守備力を取得する関数
+	int32 GetPlayerDefense() { return m_defense; }
+
+	/// @brief 守備力を設定する関数
+	/// @param def 守備力
+	void SetPlayerDefense(int32 def) { m_defense = def; }
+
 
 #pragma endregion
 
@@ -127,6 +137,8 @@ private:
 	PlayerActionState m_actionState; // 行動の状態
 
 	PlayerProgressData m_progress;   // プレイヤーのデータ保持
+
+	int32 m_defense{ 0 };
 
 #pragma endregion
 
