@@ -59,15 +59,6 @@ public:
 	/// @brief メニューステートをポップする関数
 	void PopMenuState();
 
-	/// @brief ベースメニューのコマンドを選択する関数
-	void SelectBaseCommand(bool& isCommandSelected);
-
-	/// @brief スキルメニューのコマンドを選択する関数 
-	void SelectSkillCommand(bool& isCommandSelected);
-
-	/// @brief コマンドの決定処理を管理する関数
-	void ManageDecisionProcessing(bool& isCommandSelected);
-
 	/// @brief コマンドウィンドウを見せれる状態かどうかを返す関数
 	/// @return true:可能 false:不可能
 	bool CanShowWindow()
@@ -112,6 +103,25 @@ public:
 		return m_commandName;
 	}
 
+
+private:
+	/// @brief ベースメニューのコマンドを選択する関数
+	void SelectBaseCommand(bool& isCommandSelected);
+
+	/// @brief スキルメニューのコマンドを選択する関数 
+	void SelectSkillCommand(bool& isCommandSelected);
+
+	/// @brief コマンドの決定処理を管理する関数
+	void ManageDecisionProcessing(bool& isCommandSelected);
+
+	/// @brief ダメージを反映させる関数
+	bool DamageReflection();
+
+	/// @brief ダメージを反映させる関数(スキルver)
+	bool DamageReflectionSkill();
+
+	void SelectTarget();
+
 private:
 
 	/// 列挙体 ///
@@ -127,7 +137,7 @@ private:
 
 	int32 m_maxEnemiesNum{ 0 }; // エネミーの最大数（死んでいた場合繰りさげで最大を入れ替える）
 
-	bool m_isShowArrow{ false };
+	bool m_isShowArrow{ false }; // 矢印をみせるかどうかのフラグ
 
 	/// 構造体 ///
 	std::stack<MenuState> m_menuStack; //コマンドウィンドウのスタック

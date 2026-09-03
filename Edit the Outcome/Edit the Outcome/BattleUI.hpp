@@ -4,6 +4,7 @@
 #include "CommandWindow.hpp"
 #include "SelectArrow.hpp"
 #include "DamageDisplay.hpp"
+#include "Result.hpp"
 
 // 前方宣言
 class BattleSystem;
@@ -37,6 +38,14 @@ public:
 	/// @brief ダメージ表示を配列に渡す関数
 	void PassDamageQueue(int32 damage, Vec2 position);
 
+	/// @brief ダメージ表示を配列に渡す関数
+	/// @param skillNum スキルの回数
+	void PassDamageQueue(int32 damage, Vec2 position, int32 skillNums);
+
+	void SetWin() { m_isWin = true; }
+
+	void SetLose() { m_isLose = true; }
+
 private:
 	/// @brief ダメージ表示をインキューする関数
 	void DamageInQueue();
@@ -51,6 +60,10 @@ private:
 
 	// ダメージ表示を保持する数
 	int32 m_damageDisplayNumbers{ 10 };
+
+	bool m_isWin{ false };
+
+	bool m_isLose{ false };
 
 	/// ポインタの保持 ///
 
@@ -70,6 +83,7 @@ private:
 	StatusUI statusUI; // ステータスUI
 	CommandWindow commandWindow; // コマンドウィンドウ
 	SelectArrow selectArrow; // セレクトアロー
+	Result result; // 結果
 
 	std::queue<DamageDisplay> m_damageDisplayQueue;
 	std::vector<DamageDisplay> m_damageDisplay;

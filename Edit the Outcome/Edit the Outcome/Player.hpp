@@ -22,6 +22,8 @@ enum PlayerActionState
 {
 	PlayerIdle = 0, // 待機
 	PlayerAttack = 2, // 攻撃
+	PlayerSkillFirst = 3, // スキル1
+	PlayerSkillSecond = 4, // スキル2
 	PlayerReceiveDamage = 5, // ダメージ受ける
 	PlayerDie = 6 // 死亡
 };
@@ -48,6 +50,12 @@ public:
 			break;
 		case PlayerActionState::PlayerAttack:
 			m_actionState = PlayerActionState::PlayerAttack;
+			break;
+		case PlayerActionState::PlayerSkillFirst:
+			m_actionState = PlayerActionState::PlayerSkillFirst;
+			break;
+		case PlayerActionState::PlayerSkillSecond:
+			m_actionState = PlayerActionState::PlayerSkillSecond;
 			break;
 		case PlayerActionState::PlayerReceiveDamage:
 			m_actionState = PlayerActionState::PlayerReceiveDamage;
@@ -111,6 +119,9 @@ private:
 
 	/// @brief 死亡アニメーションをする実行する関数
 	void ExecuteDeadAnimation() override;
+
+	/// @brief スキルアニメーションをする実行する関数
+	void ExecuteSkillAnimation(int32 maxAnimation, int32 animationNumY);
     
 private:
 
@@ -120,6 +131,10 @@ private:
 	const int32 m_maxAnimationNum{ 6 };    // アニメーションの最大枚数
 
 	const int32 m_maxAttackAnimationNum{ 6 }; // 攻撃アニメーションの最大枚数
+
+	const int32 m_maxSkillFirst{ 8 }; // 攻撃アニメーションの最大枚数
+
+	const int32 m_maxSkillSecond{ 6 }; // 攻撃アニメーションの最大枚数
 
 	const int32 m_maxDamageAnimationNum{ 4 }; // 被ダメージアニメーションの最大枚数
 

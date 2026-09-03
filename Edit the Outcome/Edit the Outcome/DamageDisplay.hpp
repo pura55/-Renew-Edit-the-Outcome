@@ -23,6 +23,14 @@ public:
 		m_targetPosition = position;
 	}
 
+	/// @param skillNums スキルの回数
+	void SetInformation(int32 damage, Vec2 position, int32 skillNums)
+	{
+		m_showDamge = damage;
+		m_targetPosition.x = position.x + skillNums * 5.0;
+		m_targetPosition.y = position.y + skillNums * 5.0;
+	}
+
 	/// @brief 表示時間をリセットする関数
 	void ResetLeftTime() { m_leftTime = m_showTime; }
 private:

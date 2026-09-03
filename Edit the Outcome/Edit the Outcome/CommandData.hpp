@@ -13,5 +13,7 @@ struct CommandData
 	int32 dmg;     // ダメージ
 	int32 sp;      // スキルポイント
 	bool isGet;    // 獲得フラグ
+	bool isSingle; // 単体攻撃フラグ
+	int32 skillNums; // スキルの攻撃回数
 };
 

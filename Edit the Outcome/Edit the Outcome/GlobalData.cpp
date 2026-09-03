@@ -129,6 +129,8 @@ bool GlobalData::LoadCommandData()
 		d.dmg = commandJson[U"dmg"].get<int32>();
 		d.sp = commandJson[U"sp"].get<int32>();
 		d.isGet = commandJson[U"isGet"].get<bool>();
+		d.isSingle = commandJson[U"isSingle"].get<bool>();
+		d.skillNums = commandJson[U"skillNums"].get<int32>();
 
 		m_commandMasterTable.push_back(d);
 	}

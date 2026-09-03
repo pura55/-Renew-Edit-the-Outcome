@@ -242,6 +242,9 @@
     <ClCompile Include="DamageDisplay.cpp">
       <Filter>3_BattleScene\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="Result.cpp">
+      <Filter>3_BattleScene\Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -998,6 +1001,9 @@
       <Filter>4_CutScene</Filter>
     </ClInclude>
     <ClInclude Include="DamageDisplay.hpp">
+      <Filter>3_BattleScene\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Result.hpp">
       <Filter>3_BattleScene\Renderer</Filter>
     </ClInclude>
   </ItemGroup>

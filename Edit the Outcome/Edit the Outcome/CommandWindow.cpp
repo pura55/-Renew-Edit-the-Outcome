@@ -105,7 +105,11 @@ void CommandWindow::UpdateSubCursorPos(CommandManager* commandManager)
 	m_currentCommandIndex = m_currentCommandIndex % 4;
 	m_subOffsetCursorY = (32.0 * m_currentCommandIndex);
 
-	m_subMovedFirstPos = m_subCursorFirstPos.movedBy(m_subOffsetCursorX, m_subOffsetCursorY);
-	m_subMovedSecondPos = m_subCursorSecondPos.movedBy(m_subOffsetCursorX, m_subOffsetCursorY);
-	m_subMovedThirdPos = m_subCursorThirdPos.movedBy(m_subOffsetCursorX, m_subOffsetCursorY);
+	// 時間経過によりcosを動かす
+	double cosLoopTime = Scene::Time() * 2.0;
+	m_cosWave = Math::Cos(cosLoopTime) * 10;
+
+	m_subMovedFirstPos = m_subCursorFirstPos.movedBy(m_cosWave, m_subOffsetCursorY);
+	m_subMovedSecondPos = m_subCursorSecondPos.movedBy(m_cosWave, m_subOffsetCursorY);
+	m_subMovedThirdPos = m_subCursorThirdPos.movedBy(m_cosWave, m_subOffsetCursorY);
 }

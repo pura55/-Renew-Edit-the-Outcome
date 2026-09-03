@@ -4,12 +4,13 @@
 #include "EnemyActionManager.hpp"
 #include "Player.hpp"
 #include "Enemy.hpp"
+#include "BattleUI.hpp"
 
 BattleSystem::BattleSystem()
 {
 }
 
-void BattleSystem::update(CommandManager& commandManager, EnemyActionManager& enemyActionManager)
+void BattleSystem::update(CommandManager& commandManager, EnemyActionManager& enemyActionManager, BattleUI& battleUI)
 {
 	switch (m_state)
 	{
@@ -38,17 +39,13 @@ void BattleSystem::update(CommandManager& commandManager, EnemyActionManager& en
 	case BattleState::TurnEnd:
 		//ターン終了の処理が終わったら、PlayerInputに移行する
 		//バトルを終了する場合は、BattleEndに移行する
-		StateTurnEnd(commandManager);
+		StateTurnEnd(commandManager, battleUI);
 		break;
 
 	case BattleState::BattleEnd:
 		StateBattleEnd();
 		break;
 	}
-}
-
-void BattleSystem::draw() const
-{
 }
 
 void BattleSystem::SetReference(Player* player, std::vector<Enemy*> enemies)
@@ -107,7 +104,7 @@ bool BattleSystem::StateEnemyAction(EnemyActionManager& enemyActionManager)
 	return false;
 }
 
-void BattleSystem::StateTurnEnd(CommandManager& commandManager)
+void BattleSystem::StateTurnEnd(CommandManager& commandManager, BattleUI& battleUI)
 {
 	// 行動フラグをリセット
 	m_isSelected = false;
@@ -132,6 +129,7 @@ void BattleSystem::StateTurnEnd(CommandManager& commandManager)
 	{
 		m_state = BattleState::BattleEnd;
 		m_isWin = true;
+		battleUI.SetWin();
 		return;
 	}
 	// プレイヤーのHpが0だったらバトルを終了
@@ -139,6 +137,7 @@ void BattleSystem::StateTurnEnd(CommandManager& commandManager)
 	{
 		m_state = BattleState::BattleEnd;
 		m_isLose = true;
+		battleUI.SetLose();
 		return;
 	}
 

@@ -26,6 +26,36 @@ void TargetSelectSystem::TargetSelect(bool& isSelected)
 		isSelected = true;
 		// 状態を攻撃へ設定
 		m_player->SetActionState(PlayerActionState::PlayerAttack);
+		return;
+	}
+
+	// カーソル（矢印）を左に移動
+	LeftCursor(m_minEnemiesNum, m_targetSelectIndex, m_exclusionEnemiesNum);
+
+	// カーソル（矢印）を右に移動
+	RightCursor(m_maxEnemiesNum, m_targetSelectIndex, m_exclusionEnemiesNum);
+}
+
+void TargetSelectSystem::TargetSelect(bool& isSelected, int32 skillID)
+{
+	if (KeySpace.down())
+	{
+		isSelected = true;
+
+		// スキルIDによってアニメーションを変更
+		switch (skillID)
+		{
+		case 1:
+			// 状態をスキル１へ設定
+			m_player->SetActionState(PlayerActionState::PlayerSkillFirst);
+			break;
+		case 2:
+			// 状態をスキル２へ設定
+			m_player->SetActionState(PlayerActionState::PlayerSkillSecond);
+			break;
+		}
+		
+		return;
 	}
 
 	// カーソル（矢印）を左に移動

@@ -72,9 +72,7 @@ void CommandManager::RegistCommandData()
 		if (m_commandData[i].isGet == false) continue;
 
 		// 獲得している各データを格納
-		m_currentCommandData[commandDataNum].id = m_commandData[i].id;
-		m_currentCommandData[commandDataNum].name = m_commandData[i].name;
-		m_currentCommandData[commandDataNum].dmg = m_commandData[i].dmg;
+		m_currentCommandData[commandDataNum] = m_commandData[i];
 
 		commandDataNum++;
 	}
@@ -194,29 +192,13 @@ void CommandManager::ManageDecisionProcessing(bool& isCommandSelected)
 		// 選択矢印を非表示
 		m_isShowArrow = false;
 
-		// プレイヤーの攻撃が終了したタイミングでダメージを反映
-		if (m_player->GetFinishedAttacking())
+		// ダメージ反映
+		if (DamageReflection())
 		{
-			// ベースコマンドタイプによって関数の使用を分ける
-			if (m_baseCommandType == BaseCommandType::Attack)
-			{
-				m_healthManager->PlayerAttackEnemy(m_player->GetPlayerAtk(), m_targetSelectSystem->GetSelectTarget());
-			}
-			else if (m_baseCommandType == BaseCommandType::Skills)
-			{
-				// 選んだコマンドindexと対応するコマンドのダメージをターゲットに与える
-				for (size_t i = 0; i < m_currentCommandData.size(); i++)
-				{
-					if (m_currentCommandIndex == i)
-					{
-						m_healthManager->PlayerAttackEnemy(m_currentCommandData[i].dmg, m_targetSelectSystem->GetSelectTarget());
-					}
-				}
-			}
-
 			// コマンド選択終了
 			isCommandSelected = true;
 		}
+		
 		return;
 	}
 
@@ -224,8 +206,10 @@ void CommandManager::ManageDecisionProcessing(bool& isCommandSelected)
 
 	// 選択矢印を表示
 	m_isShowArrow = true;
-	// ターゲットを選択する
-	m_targetSelectSystem->TargetSelect(m_isTargetSelected);
+
+	// ターゲット選択
+	SelectTarget();
+
 
 	if (KeyC.down())
 	{
@@ -236,6 +220,65 @@ void CommandManager::ManageDecisionProcessing(bool& isCommandSelected)
 		m_menuStack.pop();
 
 		return;
+	}
+}
+
+bool CommandManager::DamageReflection()
+{
+	// プレイヤーの攻撃が終了したタイミングでダメージを反映
+	if (m_player->GetFinishedAttacking())
+	{
+		// ベースコマンドタイプによって関数の使用を分ける
+		if (m_baseCommandType == BaseCommandType::Attack)
+		{
+			// ダメージ反映
+			m_healthManager->PlayerAttackEnemy(m_player->GetPlayerAtk(), m_targetSelectSystem->GetSelectTarget());
+			return true;
+		}
+		else if (m_baseCommandType == BaseCommandType::Skills)
+		{
+			// スキルのダメージ反映が終了していたら
+			if (DamageReflectionSkill())
+			{
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+bool CommandManager::DamageReflectionSkill()
+{
+	// 選んだコマンドindexと対応するコマンドのダメージをターゲットに与える
+	for (size_t i = 0; i < m_currentCommandData.size(); i++)
+	{
+		// コマンドが違っていたら次の処理へ
+		if (m_currentCommandIndex != i) continue;
+
+		m_healthManager->PlayerSkillEnemy(m_currentCommandData[i].dmg, m_targetSelectSystem->GetSelectTarget(), m_currentCommandData[i].skillNums);
+
+		// 使用したコマンドを削除（現在は一度きりの使用）
+		m_currentCommandData.erase(m_currentCommandData.begin() + i);
+
+		m_commandName.erase(m_commandName.begin() + i);
+		return true;
+	}
+	return false;
+}
+
+void CommandManager::SelectTarget()
+{
+	// ベースコマンドタイプによって関数の使用を分ける
+	if (m_baseCommandType == BaseCommandType::Attack)
+	{
+		// ターゲットを選択する
+		m_targetSelectSystem->TargetSelect(m_isTargetSelected);
+	}
+	else if (m_baseCommandType == BaseCommandType::Skills)
+	{
+		// ターゲットを選択する
+		m_targetSelectSystem->TargetSelect(m_isTargetSelected, m_currentCommandData[m_currentCommandIndex].id);
 	}
 }
 

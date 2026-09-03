@@ -48,6 +48,12 @@ void Player::UpdateActionState()
 		// 攻撃アニメーションを実行
 		ExecuteAttackAnimation();
 		break;
+	case PlayerActionState::PlayerSkillFirst:
+		ExecuteSkillAnimation(m_maxSkillFirst,PlayerSkillFirst);
+		break;
+	case PlayerActionState::PlayerSkillSecond:
+		ExecuteSkillAnimation(m_maxSkillSecond, PlayerSkillSecond);
+		break;
 	case PlayerActionState::PlayerReceiveDamage:
 		// 被ダメージアニメーションを実行
 		ExecuteReceiveDamageAnimation();
@@ -163,6 +169,38 @@ void Player::ExecuteDeadAnimation()
 		{
 			m_animationNumX = m_maxDeadAnimationNum;
 			m_lifeState = PlayerLifeState::PlayerDead;
+			return;
+		}
+
+		// フレームカウントをリセット
+		m_animationFrameCount = 0;
+	}
+	m_animationFrameCount += Scene::DeltaTime();
+}
+
+void Player::ExecuteSkillAnimation(int32 maxAnimation, int32 animationNumY)
+{
+	if (not m_isAttackingAnimation)
+	{
+		// フレームカウントと各軸のアニメーションを設定
+		m_animationFrameCount = 0;
+		m_animationNumX = 0;
+		m_animationNumY = animationNumY;
+		m_isAttackingAnimation = true;
+	}
+
+	if (m_maxAnimationFrame <= m_animationFrameCount)
+	{
+		m_animationNumX++;
+
+		// アニメーション枚数が最大値以上になったら
+		// エネミーの状態を待機状態へ
+		if (maxAnimation <= m_animationNumX)
+		{
+			m_animationNumX = m_maxAttackAnimationNum;
+			m_actionState = PlayerActionState::PlayerIdle;
+			m_isAttackingAnimation = false;
+			m_isFinishedAttacking = true;
 			return;
 		}
 

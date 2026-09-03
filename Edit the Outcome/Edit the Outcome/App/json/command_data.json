@@ -3,45 +3,21 @@
     [
         {
             "id": 1,
-            "name": "ファイアー",
-            "dmg": 3,
+            "name": "一閃",
+            "dmg": 10,
             "sp": 2,
-            "isGet": false
+            "isGet": true,
+            "isSingle": true,
+            "skillNums": 1
         },
         {
             "id": 2,
-            "name": "サンダー",
-            "dmg": 5,
-            "sp": 3,
-            "isGet": false
-        },
-        {
-            "id": 3,
-            "name": "ポイズン",
-            "dmg": 2,
-            "sp": 1,
-            "isGet": false
-        },
-        {
-            "id": 4,
-            "name": "業火の裁断",
-            "dmg": 25,
-            "sp": 10,
-            "isGet": false
-        },
-        {
-            "id": 5,
-            "name": "天功",
-            "dmg": 10,
-            "sp": 7,
-            "isGet": false
-        },
-        {
-            "id": 6,
-            "name": "夜行",
-            "dmg": 44,
-            "sp": 15,
-            "isGet": false
+            "name": "連斬撃",
+            "dmg": 4,
+            "sp": 2,
+            "isGet": true,
+            "isSingle": false,
+            "skillNums": 3
         }
     ]
 }

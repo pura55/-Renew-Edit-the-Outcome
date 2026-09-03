@@ -13,4 +13,6 @@ public:
 
 private:
 	Button m_button; // ボタン
+	Vec2 m_titlePosition{ Scene::CenterF().x, Scene::CenterF().y - 100.0 }; // タイトル座標
+	Font m_fontTitle{ FontMethod::MSDF, 48, Typeface::Bold }; // タイトルのフォント
 };

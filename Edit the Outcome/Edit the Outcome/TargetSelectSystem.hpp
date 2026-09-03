@@ -20,6 +20,9 @@ public:
 	/// @brief 攻撃するターゲットを選択する関数
 	void TargetSelect(bool& isSelected);
 
+	/// @brief 攻撃するターゲットを選択する関数(スキルver)
+	void TargetSelect(bool& isSelected, int32 skillID);
+
 	/// @brief 死亡している敵を除外する関数
 	void ExclusionEnemies();
 

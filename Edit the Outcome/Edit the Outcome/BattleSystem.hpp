@@ -8,6 +8,7 @@ class CommandManager;
 class EnemyActionManager;
 class Player;
 class Enemy;
+class BattleUI;
 
 
 /// <summary>
@@ -37,8 +38,7 @@ class BattleSystem
 	/// </summary>
 public:
 	BattleSystem();
-	void update(CommandManager& commandMangager, EnemyActionManager& enemyActionManager) ;
-	void draw() const;
+	void update(CommandManager& commandMangager, EnemyActionManager& enemyActionManager, BattleUI& battleUI) ;
 
 	/// @brief 外部オブジェクトへの参照を設定する関数
 	void SetReference(Player* player, std::vector<Enemy*> enemies);
@@ -70,7 +70,7 @@ private:
 	bool StateEnemyAction(EnemyActionManager& enemyActionManager);
 
 	/// @brief ターンエンド関数
-	void StateTurnEnd(CommandManager& commandManager);
+	void StateTurnEnd(CommandManager& commandManager, BattleUI& battleUI);
 
 	/// @brief バトル終了関数
 	void StateBattleEnd();

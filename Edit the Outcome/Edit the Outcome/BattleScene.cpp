@@ -63,8 +63,7 @@ void BattleScene::draw() const
 void BattleScene::RunSystems()
 {
 	// バトルシステムを更新
-	battleSystem.update(commandManager, enemyActionManager);
-	battleSystem.draw();
+	battleSystem.update(commandManager, enemyActionManager, battleUI);
 
 	// バトルBgレンダラーを更新
 	battleBgRenderer.update();

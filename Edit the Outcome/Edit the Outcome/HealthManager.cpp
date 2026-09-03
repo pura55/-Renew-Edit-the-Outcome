@@ -36,6 +36,38 @@ void HealthManager::PlayerAttackEnemy(int32 playerAtk, int32 enemyGenerateNum)
 
 			// ダメージ表示
 			m_battleUI->PassDamageQueue(playerAtk, enemies->GetPosition());
+
+			break;
+		}
+	}
+}
+
+void HealthManager::PlayerSkillEnemy(int32 playerAtk, int32 enemyGenerateNum, int32 skillNums)
+{
+	// 生成番号から特定のエネミーを探してHpを設定
+	for (auto* enemies : m_enemies)
+	{
+		if (enemies->GetGenerateNum() == enemyGenerateNum)
+		{
+			// 攻撃回数分ダメージ反映
+			for (int32 i = 0; i < skillNums; i++)
+			{
+				// エネミーのHpを修正
+				int32 replaceEnemyHp = enemies->GetEnemyHp() - playerAtk;
+
+				// 0以下の場合0に設定
+				if (replaceEnemyHp < 0) replaceEnemyHp = 0;
+
+				// エネミーのHpを設定
+				enemies->SetEnemyHp(replaceEnemyHp);
+
+				// 行動状態を被ダメージに設定
+				enemies->SetActionState(4);
+
+				// ダメージ表示
+				m_battleUI->PassDamageQueue(playerAtk, enemies->GetPosition(), i);
+			}
+			break;
 		}
 	}
 }

@@ -18,6 +18,9 @@ void BattleUI::update()
 	UpdateDamageDisplays();
 
 	ReturnDamageQueue();
+
+	// 結果が出たときに更新
+	if (m_isWin or m_isLose)result.update();
 }
 
 
@@ -48,6 +51,18 @@ void BattleUI::draw() const
 			{
 				damage.draw();
 			}
+		}
+	}
+
+	// 結果
+	{
+		if (m_isWin)
+		{
+			result.draw(true);
+		}
+		else if (m_isLose)
+		{
+			result.draw(false);
 		}
 	}
 }
@@ -86,6 +101,18 @@ void BattleUI::PassDamageQueue(int32 damage, Vec2 position)
 {
 	// キューの先頭にダメージを渡す
 	m_damageDisplayQueue.front().SetInformation(damage, position);
+
+	// 配列にキューの先頭を譲渡する
+	m_damageDisplay.push_back(std::move(m_damageDisplayQueue.front()));
+
+	// キューをポップ
+	m_damageDisplayQueue.pop();
+}
+
+void BattleUI::PassDamageQueue(int32 damage, Vec2 position, int32 skillNums)
+{
+	// キューの先頭にダメージを渡す
+	m_damageDisplayQueue.front().SetInformation(damage, position, skillNums);
 
 	// 配列にキューの先頭を譲渡する
 	m_damageDisplay.push_back(std::move(m_damageDisplayQueue.front()));

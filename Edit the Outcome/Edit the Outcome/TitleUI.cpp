@@ -12,11 +12,8 @@ void TitleUI::update()
 
 void TitleUI::draw()const
 {
-	// タイトル描画
-	FontAsset(U"TitleFont")(U"TitleScene")
-		.drawAt(TextStyle::OutlineShadow(0.2, ColorF{ 0.2, 0.6, 0.2 }, Vec2{ 3, 3 }, ColorF{ 0.0, 0.5 }), 100, Vec2{ 400, 100 });
-
 	TextureAsset(U"BattleBg").drawAt(Vec2{ Scene::CenterF()});
+	m_fontTitle(U"Edit the Outcome").drawAt(m_titlePosition, Palette::Lightblue);
 
 	m_button.Draw();
 }
