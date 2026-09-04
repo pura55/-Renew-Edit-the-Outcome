@@ -17,6 +17,10 @@
 - **[C]**: 操作キャンセル
 - **[SPACE]**: 操作決定
 
+## 📷 スクリーンショット
+[画像１](Screenshots/image_1.png)
+[画像２](Screenshots/image_2.png)
+
 ## 📜 クレジット・使用素材
 - 画像提供:[そざいのえん](https://www.s-e-project.com/) 様
 - アセット提供:[adwitr](https://adwitr.itch.io/pixel-health-bar-asset-pack-2) 様
