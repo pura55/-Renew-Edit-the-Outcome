@@ -22,8 +22,6 @@ void ImageLoader::LoadBattleAssets()
 {
 	/// 背景 ///
 	TextureAsset::Register(U"BattleBg", U"./image/Bg/ForestBg_1280x720.jpg");
-	TextureAsset::Register(U"LootBgBar", U"./image/Bg/loot_bar.jpb");
-	TextureAsset::Register(U"LootBgMagic", U"./image/Bg/loot_magic_b.jpg");
 
 	/// キャラクター ///
 	TextureAsset::Register(U"Swordsman", U"./image/player/Swordsman/Swordsman.png");
@@ -39,12 +37,6 @@ void ImageLoader::LoadBattleAssets()
 	TextureAsset::Register(U"EmptyHealthbar", U"./image/healthbar_empty.png");
 	TextureAsset::Register(U"FullHealthbar", U"./image/healthbar_full.png");
 	TextureAsset::Register(U"SelectArrow", U"./image/Arrows_pack.png");
-	TextureAsset::Register(U"DwarfKind", U"./image/dwarf_kind.png");
-	TextureAsset::Register(U"LootItemFrame", U"./image/UI_wood_frame.png");
-	TextureAsset::Register(U"LootCheckFrame", U"./image/UI_darkwood_frame.png");
-	TextureAsset::Register(U"SpeechFrame", U"./image/UI_wood_frameSpeech02.png");
-	TextureAsset::Register(U"LootCursor", U"./image/Icon_cursor.png");
-	TextureAsset::Register(U"CheckButton", U"./image/UI_darkwood_Button.png");
 	TextureAsset::Register(U"Explanation1", U"./image/explanation/explanation_1.png");
 	TextureAsset::Register(U"Explanation2", U"./image/explanation/explanation_2.png");
 	TextureAsset::Register(U"Explanation3", U"./image/explanation/explanation_3.png");
