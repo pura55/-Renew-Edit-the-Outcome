@@ -45,6 +45,10 @@ void ImageLoader::LoadBattleAssets()
 	TextureAsset::Register(U"SpeechFrame", U"./image/UI_wood_frameSpeech02.png");
 	TextureAsset::Register(U"LootCursor", U"./image/Icon_cursor.png");
 	TextureAsset::Register(U"CheckButton", U"./image/UI_darkwood_Button.png");
+	TextureAsset::Register(U"Explanation1", U"./image/explanation/explanation_1.png");
+	TextureAsset::Register(U"Explanation2", U"./image/explanation/explanation_2.png");
+	TextureAsset::Register(U"Explanation3", U"./image/explanation/explanation_3.png");
+	TextureAsset::Register(U"Explanation4", U"./image/explanation/explanation_4.png");
 }
 
 void ImageLoader::ClearBattleAssets()

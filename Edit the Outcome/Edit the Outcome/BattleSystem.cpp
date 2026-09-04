@@ -141,8 +141,10 @@ void BattleSystem::StateTurnEnd(CommandManager& commandManager, BattleUI& battle
 		return;
 	}
 
+	if (m_player->GetPlayerHp() == 0) return;
+
 	m_state = BattleState::CommandInput;
-	
+	return;
 }
 
 void BattleSystem::StateBattleEnd()

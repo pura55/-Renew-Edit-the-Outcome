@@ -7,7 +7,7 @@ TitleUI::TitleUI()
 
 void TitleUI::update()
 {
-	m_button.Update();
+	m_button.Update(m_gameExplanation);
 }
 
 void TitleUI::draw()const
@@ -15,7 +15,9 @@ void TitleUI::draw()const
 	TextureAsset(U"BattleBg").drawAt(Vec2{ Scene::CenterF()});
 	m_fontTitle(U"Edit the Outcome").drawAt(m_titlePosition, Palette::Lightblue);
 
-	m_button.Draw();
+	m_button.draw();
+
+	m_gameExplanation.draw();
 }
 
 bool TitleUI::isPlayButtonPush()

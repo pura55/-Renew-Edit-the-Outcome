@@ -4,6 +4,8 @@
 # include "TitleScene.hpp"
 # include "BattleScene.hpp"
 # include "CutScene.hpp"
+# include "ClearScene.hpp"
+# include "GameOverScene.hpp"
 
 void Main()
 {
@@ -40,6 +42,8 @@ void Main()
 	manager.add<TitleScene>(State::TitleScene);
 	manager.add<BattleScene>(State::BattleScene);
 	manager.add<CutScene>(State::CutScene);
+	manager.add<ClearScene>(State::ClearScene);
+	manager.add<GameOverScene>(State::GameOverScene);
 
 	while (System::Update())
 	{

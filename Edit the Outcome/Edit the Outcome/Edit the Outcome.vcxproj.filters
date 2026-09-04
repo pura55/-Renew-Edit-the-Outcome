@@ -161,6 +161,12 @@
     <Filter Include="4_CutScene">
       <UniqueIdentifier>{fe7d6cf4-281a-40b8-bd82-688b248138e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="5_ClearScene">
+      <UniqueIdentifier>{23fcf1ab-6d25-48e6-bac9-e9104b34d58b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6_GameOverScene">
+      <UniqueIdentifier>{f85fc0da-3dd6-44fa-b3ec-96f9d80f5cb5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -244,6 +250,21 @@
     </ClCompile>
     <ClCompile Include="Result.cpp">
       <Filter>3_BattleScene\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="ClearScene.cpp">
+      <Filter>5_ClearScene</Filter>
+    </ClCompile>
+    <ClCompile Include="ClearUI.cpp">
+      <Filter>5_ClearScene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverScene.cpp">
+      <Filter>6_GameOverScene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverUI.cpp">
+      <Filter>6_GameOverScene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameExplanation.cpp">
+      <Filter>2_TitleScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1005,6 +1026,21 @@
     </ClInclude>
     <ClInclude Include="Result.hpp">
       <Filter>3_BattleScene\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="ClearScene.hpp">
+      <Filter>5_ClearScene</Filter>
+    </ClInclude>
+    <ClInclude Include="ClearUI.hpp">
+      <Filter>5_ClearScene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverScene.hpp">
+      <Filter>6_GameOverScene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverUI.hpp">
+      <Filter>6_GameOverScene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameExplanation.hpp">
+      <Filter>2_TitleScene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

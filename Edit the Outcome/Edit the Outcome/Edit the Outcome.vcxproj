@@ -121,6 +121,8 @@
     <ClCompile Include="BattleUI.cpp" />
     <ClCompile Include="BootScene.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="ClearScene.cpp" />
+    <ClCompile Include="ClearUI.cpp" />
     <ClCompile Include="CommandManager.cpp" />
     <ClCompile Include="CommandWindow.cpp" />
     <ClCompile Include="CutScene.cpp" />
@@ -128,6 +130,9 @@
     <ClCompile Include="DamageDisplay.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyActionManager.cpp" />
+    <ClCompile Include="GameExplanation.cpp" />
+    <ClCompile Include="GameOverScene.cpp" />
+    <ClCompile Include="GameOverUI.cpp" />
     <ClCompile Include="GlobalData.cpp" />
     <ClCompile Include="HealthManager.cpp" />
     <ClCompile Include="ImageLoader.cpp" />
@@ -358,6 +363,8 @@
     <ClInclude Include="BootScene.hpp" />
     <ClInclude Include="Button.hpp" />
     <ClInclude Include="Character.hpp" />
+    <ClInclude Include="ClearScene.hpp" />
+    <ClInclude Include="ClearUI.hpp" />
     <ClInclude Include="CommandData.hpp" />
     <ClInclude Include="CommandManager.hpp" />
     <ClInclude Include="CommandWindow.hpp" />
@@ -368,6 +375,9 @@
     <ClInclude Include="Enemy.hpp" />
     <ClInclude Include="EnemyActionManager.hpp" />
     <ClInclude Include="EnemyData.hpp" />
+    <ClInclude Include="GameExplanation.hpp" />
+    <ClInclude Include="GameOverScene.hpp" />
+    <ClInclude Include="GameOverUI.hpp" />
     <ClInclude Include="GlobalData.hpp" />
     <ClInclude Include="HealthManager.hpp" />
     <ClInclude Include="ImageLoader.hpp" />

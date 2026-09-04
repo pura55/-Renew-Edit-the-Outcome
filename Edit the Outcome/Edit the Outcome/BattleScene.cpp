@@ -41,10 +41,18 @@ void BattleScene::update()
 		// 勝利時はバトルシーンへ遷移
 		if (battleSystem.GetIsWin())
 		{
+			// 一定ラウンドを進んでいたらクリアシーンへ遷移
+			if (7 <= getData().globalData.m_currentRound)
+			{
+				changeScene(State::ClearScene);
+				return;
+			}
+
 			// ラウンドを進める
 			getData().globalData.AddRound();
 
 			changeScene(State::CutScene);
+			return;
 		}
 	}
 
