@@ -80,10 +80,10 @@ private:
 
 	/// UIの保持 ///
 #pragma region UI
-	StatusUI statusUI; // ステータスUI
-	CommandWindow commandWindow; // コマンドウィンドウ
-	SelectArrow selectArrow; // セレクトアロー
-	Result result; // 結果
+	StatusUI m_statusUI; // ステータスUI
+	CommandWindow m_commandWindow; // コマンドウィンドウ
+	SelectArrow m_selectArrow; // セレクトアロー
+	Result m_result; // 結果
 
 	std::queue<DamageDisplay> m_damageDisplayQueue;
 	std::vector<DamageDisplay> m_damageDisplay;

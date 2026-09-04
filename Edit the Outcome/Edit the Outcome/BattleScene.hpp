@@ -34,21 +34,21 @@ public:
 	void PassReferences();
 
 private:
-	BattleSystem battleSystem; // バトルシステムを保持
+	BattleSystem m_battleSystem; // バトルシステムを保持
 	
-	BattleBgRenderer battleBgRenderer; // バトルシーンBgレンダラーを保持
+	BattleBgRenderer m_battleBgRenderer; // バトルシーンBgレンダラーを保持
 	
-	BattleUI battleUI; // バトルUIを保持
+	BattleUI m_battleUI; // バトルUIを保持
 
-	HealthManager healthManager; // ヘルスマネージャーを保持
+	HealthManager m_healthManager; // ヘルスマネージャーを保持
 	
-	CommandManager commandManager; // コマンドマネージャーを保持
+	CommandManager m_commandManager; // コマンドマネージャーを保持
 	
-	TargetSelectSystem targetSelectSystem; // ターゲットセレクトシステムを保持
+	TargetSelectSystem m_targetSelectSystem; // ターゲットセレクトシステムを保持
 	
-	EnemyActionManager enemyActionManager; // エネミーアクションマネージャーを保持
+	EnemyActionManager m_enemyActionManager; // エネミーアクションマネージャーを保持
 
-	Spawner spawner; // スポナーを保持
+	Spawner m_spawner; // スポナーを保持
 
 	// プレイヤーを保持
 	// スマートポインタを使用しエラーを防止

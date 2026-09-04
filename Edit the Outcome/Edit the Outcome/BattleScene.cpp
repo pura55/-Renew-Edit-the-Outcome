@@ -20,7 +20,7 @@ BattleScene::BattleScene(const InitData& init):ProjectApp::Scene{ init }
 	//commandManager.SetData(getData().globalData.m_commandMasterTable);
 
 	// コマンドの進捗データの参照を渡す
-	commandManager.SetData(getData().globalData.m_commandProgress);
+	m_commandManager.SetData(getData().globalData.m_commandProgress);
 }
 
 void BattleScene::update()
@@ -28,18 +28,18 @@ void BattleScene::update()
 	//シーン上部でスクリプトを更新
 	RunSystems();
 
-	if (battleSystem.GetBattleEnd())
+	if (m_battleSystem.GetBattleEnd())
 	{
 		// 敗北時はタイトルシーンへ遷移
-		if (battleSystem.GetIsLose())
+		if (m_battleSystem.GetIsLose())
 		{
 			// ラウンドをリセット
 			getData().globalData.ResetRound();
 
-			changeScene(State::TitleScene);
+			changeScene(State::GameOverScene);
 		}
 		// 勝利時はバトルシーンへ遷移
-		if (battleSystem.GetIsWin())
+		if (m_battleSystem.GetIsWin())
 		{
 			// 一定ラウンドを進んでいたらクリアシーンへ遷移
 			if (7 <= getData().globalData.m_currentRound)
@@ -71,11 +71,11 @@ void BattleScene::draw() const
 void BattleScene::RunSystems()
 {
 	// バトルシステムを更新
-	battleSystem.update(commandManager, enemyActionManager, battleUI);
+	m_battleSystem.update(m_commandManager, m_enemyActionManager, m_battleUI);
 
 	// バトルBgレンダラーを更新
-	battleBgRenderer.update();
-	battleBgRenderer.draw();
+	m_battleBgRenderer.update();
+	m_battleBgRenderer.draw();
 
 	// プレイヤーを更新
 	m_player->update();
@@ -89,21 +89,21 @@ void BattleScene::RunSystems()
 	}
 
 	//バトルUIを更新
-	battleUI.update();
-	battleUI.draw();
+	m_battleUI.update();
+	m_battleUI.draw();
 }
 
 void BattleScene::GeneratePlayer()
 {
 	// std::moveでスポナーからシーンにエネミーの所有権を譲渡
-	m_player = std::move(spawner.GeneratePlayer(getData().globalData.m_currentCharacterID,
+	m_player = std::move(m_spawner.GeneratePlayer(getData().globalData.m_currentCharacterID,
 		                  getData().globalData.m_playerProgress));
 }
 
 void BattleScene::GenerateEnemies()
 {
 	// std::moveでスポナーからシーンにエネミーの所有権を譲渡
-	m_activeEnemies = std::move(spawner.GenerateEnemies(getData().globalData.m_currentRound, getData().globalData, getData().globalData.m_randomEngine));
+	m_activeEnemies = std::move(m_spawner.GenerateEnemies(getData().globalData.m_currentRound, getData().globalData, getData().globalData.m_randomEngine));
 }
 
 void BattleScene::PassReferences()
@@ -124,12 +124,12 @@ void BattleScene::PassReferences()
 		}
 
 		// 参照関係を構築
-		battleSystem.SetReference(playerPtr, enemyPtr);
-		battleUI.SetReference(battleSystem, commandManager, targetSelectSystem, playerPtr, enemyPtr);
-		healthManager.SetReference(playerPtr, enemyPtr, battleUI);
-		commandManager.SetReference(targetSelectSystem, healthManager, playerPtr, enemyPtr);
-		targetSelectSystem.SetReference(playerPtr, enemyPtr);
-		enemyActionManager.SetReference(healthManager, enemyPtr);
+		m_battleSystem.SetReference(playerPtr, enemyPtr);
+		m_battleUI.SetReference(m_battleSystem, m_commandManager, m_targetSelectSystem, playerPtr, enemyPtr);
+		m_healthManager.SetReference(playerPtr, enemyPtr, m_battleUI);
+		m_commandManager.SetReference(m_targetSelectSystem, m_healthManager, playerPtr, enemyPtr);
+		m_targetSelectSystem.SetReference(playerPtr, enemyPtr);
+		m_enemyActionManager.SetReference(m_healthManager, enemyPtr);
 	}
 	else
 	{

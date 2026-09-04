@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "Common.hpp"
 #include "CutTime.hpp"
+#include "GameOverUI.hpp"
 
 /// <summary>
 /// ゲームオーバーシーン
@@ -14,4 +15,5 @@ public:
 
 private:
 	CutTime m_cutTime; // カットする時間
+	GameOverUI m_gameOverUI; // ゲームオーバーのUI
 };

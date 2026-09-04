@@ -15,4 +15,5 @@ void GameOverScene::update()
 
 void GameOverScene::draw() const
 {
+	m_gameOverUI.draw();
 }

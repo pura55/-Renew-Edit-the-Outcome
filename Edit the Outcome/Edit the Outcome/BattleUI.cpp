@@ -13,14 +13,14 @@ BattleUI::BattleUI() :m_player{ nullptr }
 
 void BattleUI::update()
 {
-	commandWindow.update(m_commandManager);
+	m_commandWindow.update(m_commandManager);
 
 	UpdateDamageDisplays();
 
 	ReturnDamageQueue();
 
 	// 結果が出たときに更新
-	if (m_isWin or m_isLose)result.update();
+	if (m_isWin or m_isLose)m_result.update();
 }
 
 
@@ -28,18 +28,18 @@ void BattleUI::draw() const
 {
 	/// ステータス ///
 	{
-		statusUI.draw(m_player, m_enemies);
+		m_statusUI.draw(m_player, m_enemies);
 	}
 	
 
 	/// コマンドウィンドウ ///
 	{
-		commandWindow.draw(m_commandManager);
+		m_commandWindow.draw(m_commandManager);
 	}
 
 	/// 敵を選択する矢印 ///
 	{
-		selectArrow.draw(m_commandManager, m_targetSelectSystem);
+		m_selectArrow.draw(m_commandManager, m_targetSelectSystem);
 	}
 
 	{
@@ -58,11 +58,11 @@ void BattleUI::draw() const
 	{
 		if (m_isWin)
 		{
-			result.draw(true);
+			m_result.draw(true);
 		}
 		else if (m_isLose)
 		{
-			result.draw(false);
+			m_result.draw(false);
 		}
 	}
 }
