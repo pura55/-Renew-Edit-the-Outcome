@@ -4,7 +4,7 @@
         {
             "id": 1,
             "name": "一閃",
-            "dmg": 10,
+            "dmg": 13,
             "sp": 2,
             "isGet": true,
             "isSingle": true,
@@ -13,7 +13,7 @@
         {
             "id": 2,
             "name": "連斬撃",
-            "dmg": 4,
+            "dmg": 5,
             "sp": 2,
             "isGet": true,
             "isSingle": false,

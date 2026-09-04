@@ -59,7 +59,7 @@ private:
 private:
 
 	// ダメージ表示を保持する数
-	int32 m_damageDisplayNumbers{ 10 };
+	int32 m_damageDisplayNumbers{ 50 };
 
 	bool m_isWin{ false };
 
