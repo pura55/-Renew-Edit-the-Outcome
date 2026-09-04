@@ -7,8 +7,12 @@
 ///</summary>
 enum class State
 {
-	TitleScene,
-	BattleScene
+	BootScene,   // bootシーン
+	TitleScene,  // タイトルシーン
+	BattleScene, // バトルシーン
+	CutScene,    // カットシーン
+	ClearScene,  // クリアシーン
+	GameOverScene // ゲームオーバーシーン
 };
 
 ///<summary>

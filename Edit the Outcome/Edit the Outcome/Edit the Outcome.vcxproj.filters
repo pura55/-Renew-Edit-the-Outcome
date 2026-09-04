@@ -131,11 +131,41 @@
     <Filter Include="0_System">
       <UniqueIdentifier>{8de44f24-e670-4d3b-a143-c6fb6f4b2b1c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="1_TitleScene">
+    <Filter Include="1_BootScene">
+      <UniqueIdentifier>{30c649c1-ef54-413d-9f62-4316da998913}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2_TitleScene">
       <UniqueIdentifier>{a11b9f0a-464b-4418-8cc0-598c2f9f8185}</UniqueIdentifier>
     </Filter>
-    <Filter Include="2_BattleScene">
+    <Filter Include="3_BattleScene">
       <UniqueIdentifier>{a5b4c684-b114-428f-ad48-73ea7451154f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3_BattleScene\Character">
+      <UniqueIdentifier>{6a6cd5fd-94ad-49da-bde8-1aba9996244c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3_BattleScene\Renderer">
+      <UniqueIdentifier>{11ea0664-8af7-48ea-b365-a95baa0ed96d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3_BattleScene\System/Magager">
+      <UniqueIdentifier>{ed4b3489-be4b-4546-8257-76f1021c165d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0_System\Struct_ExternalData">
+      <UniqueIdentifier>{ad0c9a3b-6926-46be-b11f-c8b4031cda0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0_System\GameData">
+      <UniqueIdentifier>{ea7b9a3c-d298-40e6-a1f9-caa3da9c3e26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0_System\BaseClass">
+      <UniqueIdentifier>{2369ed58-9edb-4e63-bae2-b407e2abd15f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4_CutScene">
+      <UniqueIdentifier>{fe7d6cf4-281a-40b8-bd82-688b248138e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5_ClearScene">
+      <UniqueIdentifier>{23fcf1ab-6d25-48e6-bac9-e9104b34d58b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6_GameOverScene">
+      <UniqueIdentifier>{f85fc0da-3dd6-44fa-b3ec-96f9d80f5cb5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -144,19 +174,97 @@
       <Filter>0_System</Filter>
     </ClCompile>
     <ClCompile Include="TitleScene.cpp">
-      <Filter>1_TitleScene</Filter>
-    </ClCompile>
-    <ClCompile Include="GlobalData.cpp">
-      <Filter>0_System</Filter>
-    </ClCompile>
-    <ClCompile Include="ImageLoader.cpp">
-      <Filter>0_System</Filter>
+      <Filter>2_TitleScene</Filter>
     </ClCompile>
     <ClCompile Include="BattleScene.cpp">
-      <Filter>2_BattleScene</Filter>
+      <Filter>3_BattleScene</Filter>
     </ClCompile>
     <ClCompile Include="TitleUI.cpp">
-      <Filter>1_TitleScene</Filter>
+      <Filter>2_TitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="BootScene.cpp">
+      <Filter>1_BootScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>3_BattleScene\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>3_BattleScene\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="BattleBgRenderer.cpp">
+      <Filter>3_BattleScene\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="BattleUI.cpp">
+      <Filter>3_BattleScene\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="BattleSystem.cpp">
+      <Filter>3_BattleScene\System/Magager</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandManager.cpp">
+      <Filter>3_BattleScene\System/Magager</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthManager.cpp">
+      <Filter>3_BattleScene\System/Magager</Filter>
+    </ClCompile>
+    <ClCompile Include="TargetSelectSystem.cpp">
+      <Filter>3_BattleScene\System/Magager</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyActionManager.cpp">
+      <Filter>3_BattleScene\System/Magager</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalData.cpp">
+      <Filter>0_System\GameData</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLoader.cpp">
+      <Filter>0_System\GameData</Filter>
+    </ClCompile>
+    <ClCompile Include="Selector.cpp">
+      <Filter>0_System\BaseClass</Filter>
+    </ClCompile>
+    <ClCompile Include="Spawner.cpp">
+      <Filter>3_BattleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="StatusUI.cpp">
+      <Filter>3_BattleScene\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandWindow.cpp">
+      <Filter>3_BattleScene\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectArrow.cpp">
+      <Filter>3_BattleScene\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>2_TitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="CutScene.cpp">
+      <Filter>4_CutScene</Filter>
+    </ClCompile>
+    <ClCompile Include="CutTime.cpp">
+      <Filter>4_CutScene</Filter>
+    </ClCompile>
+    <ClCompile Include="RoundText.cpp">
+      <Filter>4_CutScene</Filter>
+    </ClCompile>
+    <ClCompile Include="DamageDisplay.cpp">
+      <Filter>3_BattleScene\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Result.cpp">
+      <Filter>3_BattleScene\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="ClearScene.cpp">
+      <Filter>5_ClearScene</Filter>
+    </ClCompile>
+    <ClCompile Include="ClearUI.cpp">
+      <Filter>5_ClearScene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverScene.cpp">
+      <Filter>6_GameOverScene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverUI.cpp">
+      <Filter>6_GameOverScene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameExplanation.cpp">
+      <Filter>2_TitleScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -827,19 +935,112 @@
       <Filter>0_System</Filter>
     </ClInclude>
     <ClInclude Include="TitleScene.hpp">
-      <Filter>1_TitleScene</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalData.hpp">
-      <Filter>0_System</Filter>
-    </ClInclude>
-    <ClInclude Include="ImageLoader.hpp">
-      <Filter>0_System</Filter>
+      <Filter>2_TitleScene</Filter>
     </ClInclude>
     <ClInclude Include="BattleScene.hpp">
-      <Filter>2_BattleScene</Filter>
+      <Filter>3_BattleScene</Filter>
     </ClInclude>
-    <ClInclude Include="TitleUI.h">
-      <Filter>1_TitleScene</Filter>
+    <ClInclude Include="TitleUI.hpp">
+      <Filter>2_TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="BootScene.hpp">
+      <Filter>1_BootScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.hpp">
+      <Filter>3_BattleScene\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.hpp">
+      <Filter>3_BattleScene\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="BattleBgRenderer.hpp">
+      <Filter>3_BattleScene\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="BattleUI.hpp">
+      <Filter>3_BattleScene\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="BattleSystem.hpp">
+      <Filter>3_BattleScene\System/Magager</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandManager.hpp">
+      <Filter>3_BattleScene\System/Magager</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthManager.hpp">
+      <Filter>3_BattleScene\System/Magager</Filter>
+    </ClInclude>
+    <ClInclude Include="TargetSelectSystem.hpp">
+      <Filter>3_BattleScene\System/Magager</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyActionManager.hpp">
+      <Filter>3_BattleScene\System/Magager</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyData.hpp">
+      <Filter>0_System\Struct_ExternalData</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandData.hpp">
+      <Filter>0_System\Struct_ExternalData</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerProgressData.hpp">
+      <Filter>0_System\Struct_ExternalData</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalData.hpp">
+      <Filter>0_System\GameData</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageLoader.hpp">
+      <Filter>0_System\GameData</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomEngine.hpp">
+      <Filter>0_System\GameData</Filter>
+    </ClInclude>
+    <ClInclude Include="Selector.hpp">
+      <Filter>0_System\BaseClass</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.hpp">
+      <Filter>0_System\BaseClass</Filter>
+    </ClInclude>
+    <ClInclude Include="Spawner.hpp">
+      <Filter>3_BattleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="StatusUI.hpp">
+      <Filter>3_BattleScene\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandWindow.hpp">
+      <Filter>3_BattleScene\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectArrow.hpp">
+      <Filter>3_BattleScene\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.hpp">
+      <Filter>2_TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="CutScene.hpp">
+      <Filter>4_CutScene</Filter>
+    </ClInclude>
+    <ClInclude Include="CutTime.hpp">
+      <Filter>4_CutScene</Filter>
+    </ClInclude>
+    <ClInclude Include="RoundText.hpp">
+      <Filter>4_CutScene</Filter>
+    </ClInclude>
+    <ClInclude Include="DamageDisplay.hpp">
+      <Filter>3_BattleScene\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Result.hpp">
+      <Filter>3_BattleScene\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="ClearScene.hpp">
+      <Filter>5_ClearScene</Filter>
+    </ClInclude>
+    <ClInclude Include="ClearUI.hpp">
+      <Filter>5_ClearScene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverScene.hpp">
+      <Filter>6_GameOverScene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverUI.hpp">
+      <Filter>6_GameOverScene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameExplanation.hpp">
+      <Filter>2_TitleScene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -127,6 +127,21 @@ Resource(engine/soundfont/GMGSx.sf2.zstdcmp)
 //
 //////////////////////////////////////////////////////
 
+//
+//	Image
+//
+Resource(image/enemy/Werewolf/Werewolf.png)
+Resource(image/enemy/Slime/Slime.png)
+Resource(image/enemy/Skeleton/Skeleton.png)
+Resource(image/enemy/Orc/Orc.png)
+Resource(image/enemy/Bat/Bat.png)
+Resource(image/player/Swordsman/Swordsman.png)
+Resource(image/Arrows_pack.png)
+Resource(image/CommandWindow.png)
+Resource(image/CommandWindowSmall.png)
+Resource(image/healthbar_empty.png)
+Resource(image/healthbar_full.png)
+Resource(image/bg/ForestBg_1280x720.jpg)
 
 
 /* examples 
